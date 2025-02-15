@@ -1,0 +1,170 @@
+[
+  {
+    "id": "009f008a-faca-4b5b-91da-95ebad8a3c8e",
+    "name": "Sigma Institute of Engineering",
+    "location": "Vadodara",
+    "type": "Private",
+    "affiliation": "Autonomous",
+    "category": "diploma_private_colleges"
+  },
+  {
+    "id": "02509765-3dc0-4f77-b3f4-516facf4830a",
+    "name": "Vishwakarma Government Engineering College",
+    "location": "Chandkheda",
+    "type": "Government",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "0dc8205b-6908-46bf-aa17-dd079ce99bda",
+    "name": "Pandit Deendayal Energy University (PDEU)",
+    "location": "Gandhinagar",
+    "type": "Private",
+    "affiliation": "Private University",
+    "category": "degree_private_colleges"
+  },
+  {
+    "id": "0e10bf25-2868-4442-b732-98675db9478a",
+    "name": "Dhirubhai Ambani Institute of Information and Communication Technology",
+    "location": "Gandhinagar",
+    "type": "Private",
+    "affiliation": "Autonomous",
+    "category": "degree_private_colleges"
+  },
+  {
+    "id": "10cc52cd-d32a-439a-8716-3d48aa875b95",
+    "name": "Dr. S & S.S. Ghandhy College of Engineering & Technology",
+    "location": "Surat",
+    "type": "Government",
+    "affiliation": null,
+    "category": "diploma_gtu_affiliated_colleges"
+  },
+  {
+    "id": "164a8e6f-3866-4e16-97e8-318912ba8758",
+    "name": "Ahmedabad University - School of Engineering and Applied Science",
+    "location": "Ahmedabad",
+    "type": "Private",
+    "affiliation": "Private University",
+    "category": "degree_private_colleges"
+  },
+  {
+    "id": "1d23c7d5-ce87-422b-81d1-3eeb1b089ff6",
+    "name": "Nirma University - Institute of Technology",
+    "location": "Ahmedabad",
+    "type": "Private",
+    "affiliation": "Private University",
+    "category": "degree_private_colleges"
+  },
+  {
+    "id": "20228d66-9358-44ae-9610-c135ec889a72",
+    "name": "Parul Polytechnic Institute",
+    "location": "Vadodara",
+    "type": "Private",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "25a74339-d49a-418a-b794-5fb5b7fa22e3",
+    "name": "Silver Oak College of Engineering and Technology",
+    "location": "Ahmedabad",
+    "type": "Private",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "37f8e868-e03a-4ac2-9231-7adcdcce35a8",
+    "name": "Gujarat Power Engineering and Research Institute",
+    "location": "Mehsana",
+    "type": "Private",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "3fd79a2f-b28f-4a10-8a24-6437b04858d8",
+    "name": "Bhagwan Mahavir Polytechnic",
+    "location": "Surat",
+    "type": "Private",
+    "affiliation": "Autonomous",
+    "category": "diploma_private_colleges"
+  },
+  {
+    "id": "4f9db0a2-3d21-4228-a442-653ce7a0fb8c",
+    "name": "Ahmedabad Institute of Technology",
+    "location": "Ahmedabad",
+    "type": "Private",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "770bede9-c5de-4755-864c-3fb02b32a056",
+    "name": "Sarvajanik College of Engineering & Technology",
+    "location": "Surat",
+    "type": "Private",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "961716c4-d3ef-4e2f-9f4a-a8556fe696f1",
+    "name": "Swaminarayan College of Engineering and Technology",
+    "location": "Kalol",
+    "type": "Private",
+    "affiliation": "Autonomous",
+    "category": "diploma_private_colleges"
+  },
+  {
+    "id": "9d028d46-1870-46e2-a00e-cd714a7a1e6e",
+    "name": "L.D. College of Engineering",
+    "location": "Ahmedabad",
+    "type": "Government",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "9fa654a8-f240-4a83-9a63-611a91e207cc",
+    "name": "U.V. Patel College of Engineering",
+    "location": "Mehsana",
+    "type": "Private",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "af5438f7-901e-40ca-9779-f5eb2ac82b2f",
+    "name": "Birla Vishvakarma Mahavidyalaya",
+    "location": "Anand",
+    "type": "Government",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  },
+  {
+    "id": "b1eb1d08-6b63-4e2a-ab1c-eb0e7ffc4338",
+    "name": "Government Engineering College, Gandhinagar",
+    "location": "Gandhinagar",
+    "type": "Government",
+    "affiliation": null,
+    "category": "diploma_gtu_affiliated_colleges"
+  },
+  {
+    "id": "b7a70593-88cd-4c07-80ec-0954e67c16b5",
+    "name": "Shantilal Shah Engineering College",
+    "location": "Bhavnagar",
+    "type": "Government",
+    "affiliation": null,
+    "category": "diploma_gtu_affiliated_colleges"
+  },
+  {
+    "id": "d261cad3-52dc-49b1-bd07-182554f0d8b0",
+    "name": "Noble Group of Institutions",
+    "location": "Junagadh",
+    "type": "Private",
+    "affiliation": "Autonomous",
+    "category": "diploma_private_colleges"
+  },
+  {
+    "id": "d4e488dd-a8dd-4eaf-873e-987bd0505fe2",
+    "name": "Government Polytechnic, Ahmedabad",
+    "location": "Ahmedabad",
+    "type": "Government",
+    "affiliation": null,
+    "category": "degree_gtu_affiliated_colleges"
+  }
+]

@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql" // Change to "mysql" or "sqlite" if needed
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  fullname String
+  email    String  @unique
+  password String
+  createdAt DateTime @default(now())
+}
+
+
+
+model College {
+  id         String  @id @default(uuid())
+  name       String
+  location   String
+  type       String
+  affiliation String? // Nullable for non-private colleges
+  category   String // "degree_gtu", "degree_private", "diploma_gtu", "diploma_private"
+  students   Student[]
+  faculty    Faculty[]
+  
+}
+
+
+model Student {
+  id         String  @id @default(uuid())
+  enrollment String    @unique
+  fullname   String
+  email      String  @unique
+  password   String
+  createdAt  DateTime @default(now())
+  collegeId  String
+  college    College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  gender     Gender  
+ 
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+model Faculty{
+  id         String  @id @default(uuid())
+  fullname   String
+  email      String  @unique
+  password   String
+  createdAt  DateTime @default(now())
+  collegeId  String
+  college    College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  gender     Gender
+}
+
+model Review {
+  id         String      @id @default(uuid())
+  title      String
+  content    String
+  createdAt  DateTime    @default(now())
+  imageUrl   String?
+  authorId   String
+  authorType AuthorType
+  authorDetail Json
+  
+
+  @@map("reviews")
+}
+
+enum AuthorType {
+  STUDENT
+  FACULTY
+}
