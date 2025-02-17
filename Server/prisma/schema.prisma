@@ -63,10 +63,11 @@ model Post {
   createdAt DateTime  @default(now())
   userId    String
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  likes      Like[]
+  likes      Like[]  
   comments   Comment[]
   media     String?
   isDeleted Boolean   @default(false)
+  numbersOfLikes Int  @default(0)
 
 
   @@map("posts")
@@ -90,7 +91,7 @@ model Like {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   postId String
   post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  number  Int   @default(0)
+ 
 
   @@map("likes")
 }

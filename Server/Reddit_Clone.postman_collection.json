@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "ebfbf9a7-f17b-40ef-ad1d-92941a17f8a1",
+		"name": "Reddit_Clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41742417"
+	},
+	"item": [
+		{
+			"name": "Auth_User",
+			"item": [
+				{
+					"name": "UserSignup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fullname",
+									"value": "Harsh Patel",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ph335582@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Harsh@213",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "ranimerani",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "profile",
+									"type": "file",
+									"src": "/C:/Users/Admin/Downloads/download (1).png"
+								}
+							]
+						},
+						"url": "localhost:3000/api/auth/register",
+						"description": "Here is the Normal User which is not Student or Faculty. Profile is optional , if not given then it automatically take."
+					},
+					"response": []
+				},
+				{
+					"name": "UserLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"eou\":\"ranimerani\",\r\n    \"password\":\"Harsh@213\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/auth/login",
+						"description": "User login API here we check existing user either by username or email"
+					},
+					"response": [
+						{
+							"name": "signup Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Harsh\",\r\n    \"email\":\"ph335579@gmail.com\",\r\n    \"password\":\"Harsh@213\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8000/api/user/register"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "UserLogout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODMxOCwiZXhwIjoxNzM5ODc0NzE4fQ.YsGx5sSGHIkZgwsY3QgxJQ5QdF2WMl58rbfPUbXJP2Y"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/auth/logout",
+						"description": "User logout Api"
+					},
+					"response": [
+						{
+							"name": "signup Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Harsh\",\r\n    \"email\":\"ph335579@gmail.com\",\r\n    \"password\":\"Harsh@213\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8000/api/user/register"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "getMe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODMxOCwiZXhwIjoxNzM5ODc0NzE4fQ.YsGx5sSGHIkZgwsY3QgxJQ5QdF2WMl58rbfPUbXJP2Y"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cache-Control",
+								"value": "no-cache",
+								"type": "text"
+							},
+							{
+								"key": "Postman-Token",
+								"value": "<calculated when request is sent>",
+								"type": "text"
+							},
+							{
+								"key": "Host",
+								"value": "<calculated when request is sent>",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "PostmanRuntime/7.39.1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip, deflate, br",
+								"type": "text"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive",
+								"type": "text"
+							}
+						],
+						"url": "localhost:3000/api/auth/me"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Data_College",
+			"item": [
+				{
+					"name": "Store_college_data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:3000/api/data/create",
+						"description": "**this is only for backend purpose**"
+					},
+					"response": []
+				},
+				{
+					"name": "get college",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:3000/api/data/get",
+						"description": "**get all college that have been stored in frontend side localstorage.**"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "createReview",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc3MzE1MiwiZXhwIjoxNzM5ODU5NTUyfQ.zSWLiW63WLHdYE6ilizMcaL16C706-ZlB_4V8lagzkE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Campus",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Campus is third class no playing facilties in the campus.",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Admin/Downloads/download.jfif"
+								},
+								{
+									"key": "collegeId",
+									"value": "ffad6017-464d-42c8-9427-f2b6682eb075",
+									"type": "text"
+								}
+							]
+						},
+						"url": "localhost:3000/api/review/create",
+						"description": "**create review , author can be student or student only.**"
+					},
+					"response": []
+				},
+				{
+					"name": "getreviews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MGRkZWY4LWFiZTctNGZjYi04ZGNhLTVkNTc2ZjMwMTI0MyIsImlhdCI6MTczOTQ1MTM0NiwiZXhwIjoxNzM5NTM3NzQ2fQ.Dg7MKgRfZtuiFlnvCVpemrq8tDwcV6ZyF3uB_Gow2BE"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Tile",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Hello kese ho",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": [
+										"c:\\Users\\Admin\\Downloads\\download (1).png",
+										"c:\\Users\\Admin\\Downloads\\download.png"
+									]
+								}
+							],
+							"options": {
+								"formdata": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/review/get"
+					},
+					"response": []
+				},
+				{
+					"name": "getreviewbyId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MGRkZWY4LWFiZTctNGZjYi04ZGNhLTVkNTc2ZjMwMTI0MyIsImlhdCI6MTczOTQ1MTM0NiwiZXhwIjoxNzM5NTM3NzQ2fQ.Dg7MKgRfZtuiFlnvCVpemrq8tDwcV6ZyF3uB_Gow2BE"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Tile",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Hello kese ho",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": [
+										"c:\\Users\\Admin\\Downloads\\download (1).png",
+										"c:\\Users\\Admin\\Downloads\\download.png"
+									]
+								}
+							],
+							"options": {
+								"formdata": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/review/get/8d60bd7d-22ee-4940-a770-2c51b3793bd8"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc3MzE1MiwiZXhwIjoxNzM5ODU5NTUyfQ.zSWLiW63WLHdYE6ilizMcaL16C706-ZlB_4V8lagzkE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:3000/api/review/delete/8d60bd7d-22ee-4940-a770-2c51b3793bd8"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "createPost",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc3MzE1MiwiZXhwIjoxNzM5ODU5NTUyfQ.zSWLiW63WLHdYE6ilizMcaL16C706-ZlB_4V8lagzkE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Tailwind",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "very useful is tailwind for short lines of css codes.",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": [
+										"/C:/Users/Admin/Downloads/download.jfif",
+										"/C:/Users/Admin/Downloads/images.jfif"
+									],
+									"disabled": true
+								}
+							]
+						},
+						"url": "localhost:3000/api/review/post/create"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPosts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:3000/api/review/post/get"
+					},
+					"response": []
+				},
+				{
+					"name": "getPostByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:3000/api/review/post/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
+					},
+					"response": []
+				},
+				{
+					"name": "deletePost",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc3MzE1MiwiZXhwIjoxNzM5ODU5NTUyfQ.zSWLiW63WLHdYE6ilizMcaL16C706-ZlB_4V8lagzkE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:3000/api/review/post/delete/01503f25-2a7f-4cd0-8b29-bdb925ccadc3"
+					},
+					"response": []
+				},
+				{
+					"name": "addLike",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODA5NywiZXhwIjoxNzM5ODc0NDk3fQ.oEno-m7jF2ecYwuQGbSQpMrDsGgJgDOUAPFUX-IYMNA"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\": \"89b71e3c-a89b-49d0-b2b4-3d283fc61d6b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/review/post/like"
+					},
+					"response": []
+				},
+				{
+					"name": "addComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4OTc5MiwiZXhwIjoxNzM5ODc2MTkyfQ.rZaroHZzTu96GhoLe2w0bReZMO2GOwVHoJpdiw4-Azo"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\": \"89b71e3c-a89b-49d0-b2b4-3d283fc61d6b\",\r\n    \"content\":\"chub ho jana bhai\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/review/post/comment"
+					},
+					"response": []
+				},
+				{
+					"name": "getallCommentofPost",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODA5NywiZXhwIjoxNzM5ODc0NDk3fQ.oEno-m7jF2ecYwuQGbSQpMrDsGgJgDOUAPFUX-IYMNA"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/review/post/comment/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
