@@ -99,7 +99,7 @@ export const saveData=asyncHandler(async(req:Request,res:Response)=>{
 // Execute function
 
 export const getCollege=asyncHandler(async(req:Request,res:Response)=>{
-    const colleges=await prisma.college.findMany({})
+    const colleges=await prisma.college.findMany({select:{id:true,name:true,location:true,type:true,affiliation:true,category:true,reviews:true}})
     res.status(200).json(new ApiResponse(200,colleges,"Colleges fetched successfully"))
 })
 

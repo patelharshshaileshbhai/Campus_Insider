@@ -19,6 +19,7 @@ model User {
   posts     Post[]
   comments  Comment[]
   likes     Like[]
+  profileUrl String?
 
   @@map("users")
 }
@@ -31,6 +32,7 @@ model College {
   affiliation String? // Nullable for non-private colleges
   category    String // "degree_gtu", "degree_private", "diploma_gtu", "diploma_private"
   reviews     Review[]
+  
 }
 
 enum Gender {
@@ -49,18 +51,23 @@ model Review {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   collegeId String
   college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  isDeleted Boolean  @default(false)
 
   @@map("reviews")
 }
 
 model Post {
   id        String    @id @default(uuid())
+  title     String
   content   String
   createdAt DateTime  @default(now())
   userId    String
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  like      Like[]
-  comment   Comment[]
+  likes      Like[]
+  comments   Comment[]
+  media     String?
+  isDeleted Boolean   @default(false)
+
 
   @@map("posts")
 }
@@ -83,6 +90,15 @@ model Like {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   postId String
   post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  number  Int   @default(0)
 
   @@map("likes")
+}
+
+model Admin {
+  
+  id  String   @id @default(uuid())
+  username String
+  secret String
+
 }

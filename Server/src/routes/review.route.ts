@@ -1,26 +1,42 @@
-// import { Router } from "express";
-// import { isAuthenticated } from "../middlewares/authMiddleware";
-// import { createReview, getAuthorDetailByReviewId,  getReviewById, getReviews } from "../controllers/review.controller";
-// import upload from "../middlewares/multer";
+import { Router } from "express";
+import { isAuthenticated } from "../middlewares/authMiddleware";
+import { createPost, createReview, deletePost, deleteReview, getAllPosts, getAllReviews, getPostById, getReviewById,} from "../controllers/review.controller";
+import upload from "../middlewares/multer";
 
 
-// const router:Router=Router();
+const router:Router=Router();
 
-// router.post('/create',
-//     upload.fields([
-//         {
-//             name:'file',
-//             maxCount:2
-//         }
-//     ]),createReview);
+router.post('/create',
+    upload.fields([
+        {
+            name:'file',
+            maxCount:3
+        }
+    ]),isAuthenticated,createReview);
 
 // //getAllReviews
-// router.get('/get',getReviews)
+router.get('/get',getAllReviews);
 // //getReviewById
-// router.get('/get/:id',getReviewById)
-
-// router.get('/get/author/:id',getAuthorDetailByReviewId)
+router.get('/get/:id',getReviewById)
+router.delete('/delete/:id',isAuthenticated,deleteReview)
     
 
-// export default router
+//post
+
+router.post('/post/create',
+    upload.fields([
+        {
+            name:'file',
+            maxCount:3
+        }
+    ]),isAuthenticated,createPost);
+
+// //getAllReviews
+router.get('/post/get',getAllPosts);
+// //getReviewById
+router.get('/post/get/:id',getPostById)
+router.delete('/post/delete/:id',isAuthenticated,deletePost)
+
+
+export default router
 

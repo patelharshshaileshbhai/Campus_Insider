@@ -18,9 +18,10 @@ const uploadOnCloudinary = async (localFilePath: string): Promise<UploadApiRespo
       resource_type: "auto",
     });
 
-    console.log(localFilePath);
+   
     // File uploaded successfully, remove the local file
     fs.unlinkSync(localFilePath);
+
 
     console.log(localFilePath);
 
