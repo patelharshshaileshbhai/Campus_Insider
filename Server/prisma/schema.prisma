@@ -8,39 +8,29 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  fullname String
-  email    String  @unique
-  password String
-  createdAt DateTime @default(now())
+  id        String    @id @default(uuid())
+  fullname  String
+  password  String
+  createdAt DateTime  @default(now())
+  username  String    @unique
+  email     String    @unique
+  gender    Gender
+  reviews   Review[] 
+  posts     Post[]
+  comments  Comment[]
+  likes     Like[]
+
+  @@map("users")
 }
-
-
 
 model College {
-  id         String  @id @default(uuid())
-  name       String
-  location   String
-  type       String
+  id          String   @id @default(uuid())
+  name        String
+  location    String
+  type        String
   affiliation String? // Nullable for non-private colleges
-  category   String // "degree_gtu", "degree_private", "diploma_gtu", "diploma_private"
-  students   Student[]
-  faculty    Faculty[]
-  
-}
-
-
-model Student {
-  id         String  @id @default(uuid())
-  enrollment String    @unique
-  fullname   String
-  email      String  @unique
-  password   String
-  createdAt  DateTime @default(now())
-  collegeId  String
-  college    College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
-  gender     Gender  
- 
+  category    String // "degree_gtu", "degree_private", "diploma_gtu", "diploma_private"
+  reviews     Review[]
 }
 
 enum Gender {
@@ -49,32 +39,50 @@ enum Gender {
   other
 }
 
-model Faculty{
-  id         String  @id @default(uuid())
-  fullname   String
-  email      String  @unique
-  password   String
-  createdAt  DateTime @default(now())
-  collegeId  String
-  college    College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
-  gender     Gender
-}
-
 model Review {
-  id         String      @id @default(uuid())
-  title      String
-  content    String
-  createdAt  DateTime    @default(now())
-  imageUrl   String?
-  authorId   String
-  authorType AuthorType
-  authorDetail Json
-  
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  imageUrl  String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  collegeId String
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
 
   @@map("reviews")
 }
 
-enum AuthorType {
-  STUDENT
-  FACULTY
+model Post {
+  id        String    @id @default(uuid())
+  content   String
+  createdAt DateTime  @default(now())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  like      Like[]
+  comment   Comment[]
+
+  @@map("posts")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}
+
+model Like {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@map("likes")
 }
