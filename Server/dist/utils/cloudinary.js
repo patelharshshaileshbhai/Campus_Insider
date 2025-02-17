@@ -31,6 +31,7 @@ const uploadOnCloudinary = (localFilePath) => __awaiter(void 0, void 0, void 0, 
         });
         // File uploaded successfully, remove the local file
         fs_1.default.unlinkSync(localFilePath);
+        console.log(localFilePath);
         return response;
     }
     catch (error) {

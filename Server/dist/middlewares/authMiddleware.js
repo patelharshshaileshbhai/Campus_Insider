@@ -32,7 +32,7 @@ exports.isAuthenticated = (0, errorHandler_1.asyncHandler)((req, res, next) => _
         res.status(401).json(new errorHandler_1.ApiResponse(401, null, "Unauthorized"));
         return;
     }
-    const user = yield prisma_1.default.user.findUnique({ where: { id: decoded.id } });
+    const user = yield prisma_1.default.user.findUnique({ where: { id: decoded.id }, select: { id: true, fullname: true, email: true, username: true, gender: true } });
     if (!user) {
         res.status(401).json(new errorHandler_1.ApiResponse(401, null, "Unauthorized"));
         return;
