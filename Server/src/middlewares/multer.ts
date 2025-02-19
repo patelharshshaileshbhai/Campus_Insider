@@ -13,7 +13,8 @@ declare global {
 }
 
 // Define upload directory outside `src`
-const uploadPath = path.join(__dirname, "..", "uploads");
+const uploadPath = path.resolve('./public/temp')
+console.log(uploadPath)
 
 // Ensure the directory exists
 if (!fs.existsSync(uploadPath)) {

@@ -19,12 +19,12 @@
 							"formdata": [
 								{
 									"key": "fullname",
-									"value": "Harsh Patel",
+									"value": "Parth Patel",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "ph335582@gmail.com",
+									"value": "parth@gmail.com",
 									"type": "text"
 								},
 								{
@@ -34,7 +34,7 @@
 								},
 								{
 									"key": "username",
-									"value": "ranimerani",
+									"value": "parthrani",
 									"type": "text"
 								},
 								{
@@ -49,7 +49,7 @@
 								}
 							]
 						},
-						"url": "localhost:3000/api/auth/register",
+						"url": "localhost:8800/api/auth/register",
 						"description": "Here is the Normal User which is not Student or Faculty. Profile is optional , if not given then it automatically take."
 					},
 					"response": []
@@ -68,7 +68,7 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/auth/login",
+						"url": "localhost:8800/api/auth/login",
 						"description": "User login API here we check existing user either by username or email"
 					},
 					"response": [
@@ -115,7 +115,7 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/auth/logout",
+						"url": "localhost:8800/api/auth/logout",
 						"description": "User logout Api"
 					},
 					"response": [
@@ -189,7 +189,7 @@
 								"type": "text"
 							}
 						],
-						"url": "localhost:3000/api/auth/me"
+						"url": "localhost:8800/api/auth/me"
 					},
 					"response": []
 				}
@@ -207,7 +207,7 @@
 							"mode": "formdata",
 							"formdata": []
 						},
-						"url": "localhost:3000/api/data/create",
+						"url": "localhost:8800/api/data/create",
 						"description": "**this is only for backend purpose**"
 					},
 					"response": []
@@ -224,7 +224,7 @@
 							"mode": "formdata",
 							"formdata": []
 						},
-						"url": "localhost:3000/api/data/get",
+						"url": "localhost:8800/api/data/get",
 						"description": "**get all college that have been stored in frontend side localstorage.**"
 					},
 					"response": []
@@ -270,7 +270,7 @@
 								}
 							]
 						},
-						"url": "localhost:3000/api/review/create",
+						"url": "localhost:8800/api/review/create",
 						"description": "**create review , author can be student or student only.**"
 					},
 					"response": []
@@ -317,7 +317,7 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/review/get"
+						"url": "localhost:8800/api/review/get"
 					},
 					"response": []
 				},
@@ -363,12 +363,12 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/review/get/8d60bd7d-22ee-4940-a770-2c51b3793bd8"
+						"url": "localhost:8800/api/review/get/8d60bd7d-22ee-4940-a770-2c51b3793bd8"
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "deleteReview",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -378,7 +378,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "localhost:3000/api/review/delete/8d60bd7d-22ee-4940-a770-2c51b3793bd8"
+						"url": "localhost:8800/api/review/delete/8d60bd7d-22ee-4940-a770-2c51b3793bd8"
 					},
 					"response": []
 				}
@@ -422,7 +422,7 @@
 								}
 							]
 						},
-						"url": "localhost:3000/api/review/post/create"
+						"url": "localhost:8800/api/review/post/create"
 					},
 					"response": []
 				},
@@ -438,7 +438,7 @@
 							"mode": "formdata",
 							"formdata": []
 						},
-						"url": "localhost:3000/api/review/post/get"
+						"url": "localhost:8800/api/review/post/get"
 					},
 					"response": []
 				},
@@ -454,7 +454,7 @@
 							"mode": "formdata",
 							"formdata": []
 						},
-						"url": "localhost:3000/api/review/post/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
+						"url": "localhost:8800/api/review/post/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
 					},
 					"response": []
 				},
@@ -473,7 +473,7 @@
 							"mode": "formdata",
 							"formdata": []
 						},
-						"url": "localhost:3000/api/review/post/delete/01503f25-2a7f-4cd0-8b29-bdb925ccadc3"
+						"url": "localhost:8800/api/review/post/delete/01503f25-2a7f-4cd0-8b29-bdb925ccadc3"
 					},
 					"response": []
 				},
@@ -497,7 +497,7 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/review/post/like"
+						"url": "localhost:8800/api/review/post/like"
 					},
 					"response": []
 				},
@@ -521,7 +521,7 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/review/post/comment"
+						"url": "localhost:8800/api/review/post/comment"
 					},
 					"response": []
 				},
@@ -548,7 +548,7 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/review/post/comment/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
+						"url": "localhost:8800/api/review/post/comment/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
 					},
 					"response": []
 				}
