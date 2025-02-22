@@ -4,3 +4,9 @@
 @tailwind utilities;
 
 // @import "~@fortawesome/fontawesome-free/css/all.css";
+
+@layer utilities{
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
