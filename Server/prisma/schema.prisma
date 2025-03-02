@@ -2,26 +2,24 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// prisma/schema.prisma
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
-  // uncomment next line if you use Prisma <5.10
-  // directUrl = env("DATABASE_URL_UNPOOLED")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
+
 model User {
-  id        String    @id @default(uuid())
-  fullname  String
-  password  String
-  createdAt DateTime  @default(now())
-  username  String    @unique
-  email     String    @unique
-  gender    Gender
-  reviews   Review[] 
-  posts     Post[]
-  comments  Comment[]
-  likes     Like[]
+  id         String    @id @default(uuid())
+  fullname   String
+  password   String
+  createdAt  DateTime  @default(now())
+  username   String    @unique
+  email      String    @unique
+  gender     Gender
   profileUrl String?
+  comments   Comment[]
+  likes      Like[]
+  posts      Post[]
+  reviews    Review[]
 
   @@map("users")
 }
@@ -31,16 +29,9 @@ model College {
   name        String
   location    String
   type        String
-  affiliation String? // Nullable for non-private colleges
-  category    String // "degree_gtu", "degree_private", "diploma_gtu", "diploma_private"
+  affiliation String?
+  category    String
   reviews     Review[]
-  
-}
-
-enum Gender {
-  male
-  female
-  other
 }
 
 model Review {
@@ -50,27 +41,26 @@ model Review {
   createdAt DateTime @default(now())
   imageUrl  String?
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   collegeId String
-  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
   isDeleted Boolean  @default(false)
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("reviews")
 }
 
 model Post {
-  id        String    @id @default(uuid())
-  title     String
-  content   String
-  createdAt DateTime  @default(now())
-  userId    String
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  likes      Like[]  
-  comments   Comment[]
-  media     String?
-  isDeleted Boolean   @default(false)
-  numbersOfLikes Int  @default(0)
-
+  id             String    @id @default(uuid())
+  title          String
+  content        String
+  createdAt      DateTime  @default(now())
+  userId         String
+  media          String?
+  isDeleted      Boolean   @default(false)
+  numbersOfLikes Int       @default(0)
+  comments       Comment[]
+  likes          Like[]
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("posts")
 }
@@ -80,9 +70,9 @@ model Comment {
   content   String
   createdAt DateTime @default(now())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   postId    String
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("comments")
 }
@@ -90,18 +80,21 @@ model Comment {
 model Like {
   id     String @id @default(uuid())
   userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   postId String
   post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
- 
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("likes")
 }
 
 model Admin {
-  
-  id  String   @id @default(uuid())
+  id       String @id @default(uuid())
   username String
-  secret String
+  secret   String
+}
 
+enum Gender {
+  male
+  female
+  other
 }
