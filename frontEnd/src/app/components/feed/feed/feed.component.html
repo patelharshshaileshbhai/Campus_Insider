@@ -1,6 +1,68 @@
-<div>
-    <div class="w-11/12 mx-auto">
-        <h1>Infinite Feed</h1>
+<div class="bg-[#fbf8f5]">
+    <div class="w-[100%] sm:w-[60%] mx-auto h-[100vh] overflow-y-scroll no-scrollbar " 
+    [scrollWindow]="false" 
+    infiniteScroll 
+    [infiniteScrollDistance]="scrollDownDistance" 
+    [infiniteScrollThrottle]="throttle" 
+    [infiniteScrollUpDistance]="scrollUpDistance" 
+    (scrolled)="onScrollDown()" 
+    (scrolledUp)="onScrollUp()">
 
+    <div>
+        @for (item of feedData; track $index) {
+            <div class="w-full sm:w-[35rem] mx-auto my-4 rounded-lg shadow-lg border">
+                <div class="flex  justify-between items-center">
+                    <div class="mb-2 flex gap-2 items-center m-3">
+                        <img class="rounded-full w-11 h-11" src="https://plus.unsplash.com/premium_photo-1736168213200-efe2485efc8a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyNXx8fGVufDB8fHx8fA%3D%3D" alt="User_image">
+                        <p class="text-xl font-semibold">User Name</p>
+                    </div>
+                    
+                    <p class="mr-3 font-semibold text-slate-500">On 11/11/2025</p>
+
+                </div>
+             
+                <div>
+                    <img class="w-full h-[25rem] object-cover" src={{item.imageUrl}} alt="reviewImage">
+                </div>
+                <div class="mt-3 space-y-2 m-5">
+                    <p class='text-xl  font-semibold  '>{{item.title | titlecase}}</p>
+                    <div class="w-full  border border-slate-200"></div>
+                    <div class="flex justify-around">
+                        <button class="flex gap-3 items-baseline">
+                            
+                            <i class="fa-regular fa-heart"></i>
+                          
+                            <span class="text-md font-semibold">Like</span>
+                            <span class="text-md font-semibold">100</span>
+                        </button>
+                        <button class="flex gap-3 items-baseline">
+                            <i class="fa-regular fa-comment"></i>
+                            <span class="text-md font-semibold">Comments</span>
+                            <span class="text-md font-semibold">100</span>
+
+                        </button>
+                        <button class="flex gap-3 items-baseline">
+                           
+                            <i class="fa-solid fa-share"></i>
+                            
+                            <span class="text-md font-semibold">Share</span>
+                            <span class="text-md font-semibold">100</span>
+                        </button>
+                    </div>
+                    <p class="text-lg font-normal">{{item.content}}</p>
+                </div>
+            </div>
+        }
     </div>
+       
+    </div>
+
+    <div *ngIf="loading" class="text-center py-4">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-200 border-t-blue-500"></div>
+      </div>
+    
+      <!-- End of Feed Message -->
+      <div *ngIf="!hasMore && !loading" class="text-center py-4 text-gray-600">
+        No more reviews to load
+      </div>
 </div>

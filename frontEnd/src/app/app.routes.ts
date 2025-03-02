@@ -5,6 +5,8 @@ import { LoginComponent } from './components/Auth/login/login.component';
 import { SignupComponent } from './components/Auth/signup/signup.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { FeedComponent } from './components/feed/feed/feed.component';
+import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 
 export const routes: Routes = [
     {
@@ -34,5 +36,9 @@ export const routes: Routes = [
     {
         path:'profile',
         component:ProfilePageComponent
+    },
+    {
+      path:'feed-page',
+      component:FeedpageComponent
     }
 ];
