@@ -4,9 +4,9 @@ import prisma from "../config/prisma";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { StatusCode } from "../utils/StatusCodes";
-import { Student } from "../types/student";
+// import { Student } from "../types/users";
 import { uploadOnCloudinary } from "../utils/cloudinary";
-
+import { User } from "@prisma/client";
 export const createUser = asyncHandler(async (req: Request, res: Response) => {
     const { fullname, email, password, username, gender } = req.body;
 
@@ -102,3 +102,19 @@ export const logOut = asyncHandler(async (req: Request, res: Response) => {
     res.status(StatusCode.OK).json(new ApiResponse(StatusCode.OK, null, "Logout successful"));
 });
 
+export const googleCallback = asyncHandler(async (req: Request, res: Response) => {
+    const user = req.user as User;
+    const token = sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: "1d" });
+    const userData = {
+      id: user.id,
+      fullname: user.fullname,
+      email: user.email,
+      username: user.username,
+      gender: user.gender,
+      profileUrl: user.profileUrl || '',
+      authType: 'google',
+    //   password: 'oauth2',
+    };
+  
+    res.status(StatusCode.OK).json(new ApiResponse(StatusCode.OK, { userData, token }, 'Google login successful'));
+  });

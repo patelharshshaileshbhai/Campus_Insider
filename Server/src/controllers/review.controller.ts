@@ -281,37 +281,9 @@ export const getAllPosts = asyncHandler(async (req: Request, res: Response) => {
             fullname: true,
             username: true,
             profileUrl: true,
-          },
-        },
-        comments: {
-          select: {
-            id: true,
-            content: true,
-            createdAt: true,
-            user: {
-              select: {
-                id: true,
-                fullname: true,
-                username: true,
-                profileUrl: true,
-              },
-            },
-          },
-        },
-        likes: {
-          select: {
-            id: true,
-            user: {
-              select: {
-                id: true,
-                fullname: true,
-                username: true,
-                profileUrl: true,
-              },
-            },
-          },
-        },
-      },
+          }
+        }
+      }
     });
   
     if (!posts || posts.length === 0) {
@@ -345,34 +317,6 @@ export const getPostById = asyncHandler(async (req: Request, res: Response) => {
           profileUrl: true,
         },
       },
-      comments: {
-        select: {
-          id: true,
-          content: true,
-          createdAt: true,
-          user: {
-            select: {
-              id: true,
-              fullname: true,
-              username: true,
-              profileUrl: true,
-            },
-          },
-        },
-      },
-      likes: {
-        select: {
-          id: true,
-          user: {
-            select: {
-              id: true,
-              fullname: true,
-              username: true,
-              profileUrl: true,
-            },
-          },
-        },
-      },
       numbersOfLikes: true,
     },
   });
@@ -390,7 +334,7 @@ export const getPostById = asyncHandler(async (req: Request, res: Response) => {
 
 export const deletePost = asyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const post = await prisma.post.findUnique({ where: { id } });
+  const post = await prisma.post.findUnique({ where: { id }});
   if (!post) {
     res
       .status(StatusCode.NOT_FOUND)
@@ -459,7 +403,19 @@ export const addLike = asyncHandler(async (req: Request, res: Response) => {
 
   // Add a like entry
   const liked = await prisma.like.create({
-    data: { userId, postId },
+    // data: { userId, postId },
+    data: {
+      user: {
+        connect: {
+          id: userId,
+        },
+      },
+      post: {
+        connect: {
+          id: postId,
+        },
+      },
+    },
   });
 
   res
@@ -515,6 +471,19 @@ export const addComment = asyncHandler(
                 }
             },
             content
+         },
+         select:{
+            id:true,
+            content:true,
+            createdAt:true,
+            user:{
+                select:{
+                    id:true,
+                    fullname:true,
+                    username:true,
+                    profileUrl:true
+                }
+            }
          }
       })
 
@@ -570,4 +539,38 @@ export const addComment = asyncHandler(
     res.status(StatusCode.OK).json(new ApiResponse(StatusCode.OK, comments, "Comments fetched successfully"));
   });
   
-  
+export const getAllLikes=asyncHandler(async (req: Request, res: Response) => {
+
+  const {postId}=req.params
+
+  if(!postId){
+
+    res.status(StatusCode.BAD_REQUEST)
+    .json(new ApiResponse(StatusCode.BAD_REQUEST,null,"All fields are  required"))
+    return
+  }
+
+  const likes=await prisma.like.findMany({
+    where:{postId:postId},
+    select:{
+      id:true,
+      user: {
+        select: {
+          id: true,
+          fullname: true,
+          username: true,
+          profileUrl: true,
+        },
+      },
+      post:{
+        select:{
+          id:true,
+          title:true,
+        
+      }
+    }
+  }
+  })
+  res.status(StatusCode.OK).json(new ApiResponse(StatusCode.OK,likes,"Likes fetched successfully"))
+
+})

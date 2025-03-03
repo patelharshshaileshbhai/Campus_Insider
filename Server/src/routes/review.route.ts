@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { isAuthenticated } from "../middlewares/authMiddleware";
-import { addComment, addLike, createPost, createReview, deletePost, deleteReview, getAllCommentOfPost, getAllPosts, getAllReviews, getPostById, getReviewById,} from "../controllers/review.controller";
+import { addComment, addLike, createPost, createReview, deletePost, deleteReview, getAllCommentOfPost, getAllLikes, getAllPosts, getAllReviews, getPostById, getReviewById,} from "../controllers/review.controller";
 import upload from "../middlewares/multer";
 
 
@@ -39,8 +39,8 @@ router.delete('/post/delete/:id',isAuthenticated,deletePost)
 
 router.post('/post/like',isAuthenticated,addLike)
 router.post('/post/comment',isAuthenticated,addComment)
-router.get('/post/comment/get/:postId',isAuthenticated,getAllCommentOfPost)
-
+router.get('/post/comment/get/:postId',getAllCommentOfPost)
+router.get('/post/like/get/:postId',getAllLikes)
 
 export default router
 
