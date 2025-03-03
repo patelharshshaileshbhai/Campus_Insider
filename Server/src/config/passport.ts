@@ -1,27 +1,38 @@
-import passport from 'passport';
-import { Strategy as GoogleStrategy, Profile, VerifyCallback } from 'passport-google-oauth20';
-import prisma from './prisma';
-import { Request } from 'express';
+import passport from "passport";
+import {
+  Strategy as GoogleStrategy,
+  Profile,
+  VerifyCallback,
+  StrategyOptionsWithRequest
+} from "passport-google-oauth20";
+import prisma from "./prisma";
+import { Request } from "express";
 
-const { GOOGLEClientId, GOOGLEClientSecret, BASE_URL } = process.env;
-
+//define types of config
+const StrategyOptionsWithRequest = GoogleStrategy;
 // Google OAuth configuration
-const config: any = {
-  clientID: process.env.GOOGLEClientId as string | undefined,
-  clientSecret: process.env.GOOGLEClientSecret as string,
-  callbackURL: `http://localhost:8800/api/auth/google/callback` as string,
-  passReqToCallback: true as boolean , // Explicitly include this property
+const config: StrategyOptionsWithRequest = {
+  clientID: process.env.GOOGLEClientId as string, 
+  clientSecret: process.env.GOOGLEClientSecret as string, 
+  callbackURL: `http://localhost:8800/api/auth/google/callback` as string, 
+  passReqToCallback: true , // Explicitly include this property
 };
 
 // Passport Google OAuth Strategy
 passport.use(
   new GoogleStrategy(
     config,
-    async (req: Request, accessToken: string, refreshToken: string, profile: Profile, done: VerifyCallback) => {
+    async (
+      req: Request,
+      accessToken: string,
+      refreshToken: string,
+      profile: Profile,
+      done: VerifyCallback
+    ) => {
       try {
         // Extract email from profile
         const email = profile.emails?.[0]?.value;
-        if (!email) throw new Error('No email provided by Google');
+        if (!email) throw new Error("No email provided by Google");
 
         // Check if user already exists in the database
         let user = await prisma.user.findFirst({ where: { email } });
@@ -30,13 +41,15 @@ passport.use(
           // Create a new user if not found
           user = await prisma.user.create({
             data: {
-              fullname: profile.displayName || 'Unknown User',
+              fullname: profile.displayName || "Unknown User",
               email,
-              username: `${email.split('@')[0]}${Math.random().toString(36).slice(2, 7)}`,
-              gender: 'other', // Google does not provide gender
-              profileUrl: profile.photos?.[0]?.value || '', // Use profile picture if available
-              authType: 'google',
-              password: 'oauth2', // Placeholder for OAuth users
+              username: `${email.split("@")[0]}${Math.random()
+                .toString(36)
+                .slice(2, 7)}`,
+              gender: "other", // Google does not provide gender
+              profileUrl: profile.photos?.[0]?.value || "", // Use profile picture if available
+              authType: "google",
+              password: "oauth2", // Placeholder for OAuth users
             },
           });
         }
