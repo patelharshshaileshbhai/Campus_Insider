@@ -64,13 +64,75 @@
 					"response": []
 				},
 				{
+					"name": "Googleauth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fullname",
+									"value": "Parth Patel",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "parth@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Harsh@213",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "parthrani",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "female",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "profile",
+									"type": "file",
+									"src": "/C:/Users/Admin/Downloads/download (1).png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/google",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"google"
+							]
+						},
+						"description": "Here is the Normal User which is not Student or Faculty. Profile is optional , if not given then it automatically take."
+					},
+					"response": []
+				},
+				{
 					"name": "UserLogin",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"eou\":\"parthrani\",\r\n    \"password\":\"Harsh@213\"\r\n}",
+							"raw": "{\r\n    \r\n    \"eou\":\"ph335579@gmail.com\",\r\n    \"password\":\"Harsh@213\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -132,7 +194,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODMxOCwiZXhwIjoxNzM5ODc0NzE4fQ.YsGx5sSGHIkZgwsY3QgxJQ5QdF2WMl58rbfPUbXJP2Y",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -149,13 +211,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8800/api/auth/logout",
+							"raw": "{{baseUrl}}/auth/logout",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"auth",
 								"logout"
 							]
@@ -205,7 +265,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODMxOCwiZXhwIjoxNzM5ODc0NzE4fQ.YsGx5sSGHIkZgwsY3QgxJQ5QdF2WMl58rbfPUbXJP2Y",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -249,13 +309,11 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8800/api/auth/me",
+							"raw": "{{baseUrl}}/auth/me",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"auth",
 								"me"
 							]
@@ -330,7 +388,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMmI4YzIxLWE5ZjktNDJmYS05NDA0LTJkMzY1NDA1NTAzZCIsImlhdCI6MTc0MDYzMjE4MywiZXhwIjoxNzQwNzE4NTgzfQ.UP3115Sgobm4BnNyQJdKItRr25LhD4DDsSIrjdgkma8",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -388,7 +446,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MGRkZWY4LWFiZTctNGZjYi04ZGNhLTVkNTc2ZjMwMTI0MyIsImlhdCI6MTczOTQ1MTM0NiwiZXhwIjoxNzM5NTM3NzQ2fQ.Dg7MKgRfZtuiFlnvCVpemrq8tDwcV6ZyF3uB_Gow2BE",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -424,13 +482,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/get",
+							"raw": "{{baseUrl}}/review/get",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"get"
 							]
@@ -449,7 +505,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MGRkZWY4LWFiZTctNGZjYi04ZGNhLTVkNTc2ZjMwMTI0MyIsImlhdCI6MTczOTQ1MTM0NiwiZXhwIjoxNzM5NTM3NzQ2fQ.Dg7MKgRfZtuiFlnvCVpemrq8tDwcV6ZyF3uB_Gow2BE",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -485,16 +541,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/get/8d60bd7d-22ee-4940-a770-2c51b3793bd8",
+							"raw": "{{baseUrl}}/review/get/51bb0cf4-6d95-46c9-8b99-3c84431c45bd",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"get",
-								"8d60bd7d-22ee-4940-a770-2c51b3793bd8"
+								"51bb0cf4-6d95-46c9-8b99-3c84431c45bd"
 							]
 						}
 					},
@@ -508,7 +562,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc3MzE1MiwiZXhwIjoxNzM5ODU5NTUyfQ.zSWLiW63WLHdYE6ilizMcaL16C706-ZlB_4V8lagzkE",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -516,16 +570,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8800/api/review/delete/8d60bd7d-22ee-4940-a770-2c51b3793bd8",
+							"raw": "{{baseUrl}}/review/delete/51bb0cf4-6d95-46c9-8b99-3c84431c45bd",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"delete",
-								"8d60bd7d-22ee-4940-a770-2c51b3793bd8"
+								"51bb0cf4-6d95-46c9-8b99-3c84431c45bd"
 							]
 						}
 					},
@@ -544,7 +596,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMmI4YzIxLWE5ZjktNDJmYS05NDA0LTJkMzY1NDA1NTAzZCIsImlhdCI6MTc0MDYzMjE4MywiZXhwIjoxNzQwNzE4NTgzfQ.UP3115Sgobm4BnNyQJdKItRr25LhD4DDsSIrjdgkma8",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -556,29 +608,28 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Tailwind",
+									"value": "Mysql",
 									"type": "text"
 								},
 								{
 									"key": "content",
-									"value": "very useful is tailwind for short lines of css codes.",
+									"value": "I was not like this database before after knowing about prisma it is my favorite database.",
 									"type": "text"
 								},
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/Admin/Downloads/images.jfif"
+									"src": "/C:/Users/Admin/Downloads/images.jfif",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/post/create",
+							"raw": "{{baseUrl}}/review/post/create",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"post",
 								"create"
@@ -600,13 +651,11 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/post/get",
+							"raw": "{{baseUrl}}/review/post/get",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"post",
 								"get"
@@ -628,17 +677,15 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/post/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b",
+							"raw": "{{baseUrl}}/review/post/get/6da9494a-bd49-4580-9988-f3646035e8a7",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"post",
 								"get",
-								"89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
+								"6da9494a-bd49-4580-9988-f3646035e8a7"
 							]
 						}
 					},
@@ -652,7 +699,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc3MzE1MiwiZXhwIjoxNzM5ODU5NTUyfQ.zSWLiW63WLHdYE6ilizMcaL16C706-ZlB_4V8lagzkE",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -664,13 +711,11 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/post/delete/01503f25-2a7f-4cd0-8b29-bdb925ccadc3",
+							"raw": "{{baseUrl}}/review/post/delete/01503f25-2a7f-4cd0-8b29-bdb925ccadc3",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"post",
 								"delete",
@@ -688,7 +733,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODA5NywiZXhwIjoxNzM5ODc0NDk3fQ.oEno-m7jF2ecYwuQGbSQpMrDsGgJgDOUAPFUX-IYMNA",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -697,7 +742,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"postId\": \"89b71e3c-a89b-49d0-b2b4-3d283fc61d6b\"\r\n}",
+							"raw": "{\r\n    \"postId\": \"6da9494a-bd49-4580-9988-f3646035e8a7\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -705,13 +750,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/post/like",
+							"raw": "{{baseUrl}}/review/post/like",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"post",
 								"like"
@@ -728,7 +771,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4OTc5MiwiZXhwIjoxNzM5ODc2MTkyfQ.rZaroHZzTu96GhoLe2w0bReZMO2GOwVHoJpdiw4-Azo",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -745,13 +788,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/post/comment",
+							"raw": "{{baseUrl}}/review/post/comment",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"post",
 								"comment"
@@ -771,7 +812,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiMjkzODkzLTZiMTAtNGVkMC04NmFiLWUwODIyZGZhZGY1MCIsImlhdCI6MTczOTc4ODA5NywiZXhwIjoxNzM5ODc0NDk3fQ.oEno-m7jF2ecYwuQGbSQpMrDsGgJgDOUAPFUX-IYMNA",
+									"value": "{{authToken}}",
 									"type": "string"
 								}
 							]
@@ -788,18 +829,59 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8800/api/review/post/comment/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b",
+							"raw": "{{baseUrl}}/review/post/comment/get/89b71e3c-a89b-49d0-b2b4-3d283fc61d6b",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8800",
 							"path": [
-								"api",
 								"review",
 								"post",
 								"comment",
 								"get",
 								"89b71e3c-a89b-49d0-b2b4-3d283fc61d6b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllLikes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/review/post/like/get/6da9494a-bd49-4580-9988-f3646035e8a7",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"review",
+								"post",
+								"like",
+								"get",
+								"6da9494a-bd49-4580-9988-f3646035e8a7"
 							]
 						}
 					},
@@ -834,6 +916,11 @@
 		{
 			"key": "baseUrl",
 			"value": "localhost:8800/api",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZhNzllNDFlLTg5MTYtNGMwNS05YTA3LTcxZDM5YTg3Mzk3MiIsImlhdCI6MTc0MDk4OTc4NiwiZXhwIjoxNzQxMDc2MTg2fQ.-FJZ4nQMEiaY2mBef0UU6acDRFTtziQxsuwKi67yOZY",
 			"type": "string"
 		}
 	]
