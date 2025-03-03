@@ -35,14 +35,15 @@ import prisma, { connectDB } from './config/prisma'; // Adjust path as needed
 import authRoutes from './routes/auth.route';
 import reviewRoutes from './routes/review.route';
 import dataRoutes from './routes/data.route';
-
+import cors from 'cors';
 dotenv.config();
 
+
 const app: express.Application = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 app.use(express.json());
-
+app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/data', dataRoutes);

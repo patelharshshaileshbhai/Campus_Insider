@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { ReviewService } from '../../../services/review.service';
-import { CommonModule, TitleCasePipe } from '@angular/common';
+import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
+import { Post } from '../../../models/post.mode';
+import { PostService } from '../../../services/post.service';
 
 
 @Component({
   selector: 'app-feed',
-  imports: [InfiniteScrollDirective,CommonModule,TitleCasePipe],
+  imports: [InfiniteScrollDirective,CommonModule,TitleCasePipe,DatePipe],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
 export class FeedComponent implements OnInit {
 
-  feedData:any = [];    //create a model change this 
+  posts: Post[] = [];    
   currentPage : number = 1;
+  pageSize = 5;
   loading:boolean = false;
   hasMore:boolean = true;
   throttle = 300;
@@ -22,59 +25,95 @@ export class FeedComponent implements OnInit {
 
 
  
-  constructor(private reviewServie: ReviewService) {}
+  constructor(private postServie: PostService) {}
 
-  ngOnInit(){
-  
-     this.loadInitialReviews();
+  ngOnInit(): void {
+    this.loadMore();
   }
 
-  loadInitialReviews(){
-   
-    this.loading = true;
-    this.reviewServie.getReviews(this.currentPage).subscribe({
-      next:(response)=>{
+  loadMore(): void{
+    if(!this.hasMore) return;
 
-       this.feedData = response.reviews;
+    this.postServie.getPage(this.currentPage,this.pageSize).subscribe({
+      next:(response) => {
+       this.posts = [...this.posts, ...response.posts];
        this.hasMore = response.hasMore;
-       this.loading = false;
-   
+       this.currentPage++;
       },
-      error:(error)=>{
-        console.error("Error Loading Reviews:", error);
-        this.loading = false;
+      error: (error) => {
+        console.error('Error Loading More Posts', error);
       }
     })
   }
-
-
-
 
   onScrollDown(){
- 
-    if(this.loading || !this.hasMore) return;
 
-    this.loading = true;
+      if(this.loading || !this.hasMore) return;
+      this.loading = true;
 
-    this.currentPage++;
-    this.reviewServie.getReviews(this.currentPage).subscribe({
-      next:(response) => {
-        this.feedData = [...this.feedData,...response.reviews];
-        this.hasMore = response.hasMore;
-        this.loading = false;
-      },
-      error:(error) => {
-        console.error('Error Loading More Reviews:',error);
-        this.loading = false;
-        this.currentPage--;  //Revert page increment on error;
-      }
-    })
-    
-  }
-  onScrollUp(){
-    console.log('scrolled Up');
-    // const start = this.feeds;
-    // this.feeds += 5;
-    // this.appendItems(start,this.feeds);
-  }
+      this.loadMore();
+
+      this.loading = false;
 }
+
+
+}
+
+
+
+
+
+// ngOnInit(){
+  
+//   this.loadInitialReviews();
+// }
+
+// loadInitialReviews(){
+
+//  this.loading = true;
+//  this.reviewServie.getAllPostData(this.currentPage).subscribe({
+//    next:(response)=>{
+
+//      console.log(response);
+//      this.feedData = response.data;
+//      this.loading = false;
+//    },
+//    error:(error)=>{
+//      console.error("Error Loading Reviews:", error);
+//      this.loading = false;
+//    }
+//  })
+// }
+
+
+
+
+// onScrollDown(){
+
+//  if(this.loading || !this.hasMore) return;
+
+//  this.loading = true;
+
+//  this.currentPage++;
+//  this.reviewServie.getAllPostData(this.currentPage).subscribe({
+
+//    next:(response) => {
+//      console.log(response)
+//      this.feedData = [...this.feedData,...response.data];
+//      this.hasMore = response.hasMore;
+//      this.loading = false;
+//    },
+//    error:(error) => {
+//      console.error('Error Loading More Reviews:',error);
+//      this.loading = false;
+//      this.currentPage--;  //Revert page increment on error;
+//    }
+//  })
+ 
+// }
+// onScrollUp(){
+//  console.log('scrolled Up');
+//  // const start = this.feeds;
+//  // this.feeds += 5;
+//  // this.appendItems(start,this.feeds);
+// }

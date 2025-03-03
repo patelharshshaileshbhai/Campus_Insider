@@ -1,53 +1,66 @@
+
+<div
+[scrollWindow] ="false"
+infiniteScroll
+[infiniteScrollDistance]="scrollDownDistance"
+[infiniteScrollThrottle]="throttle"
+[infiniteScrollUpDistance]="scrollUpDistance"
+(scrolled)="onScrollDown()"
+>
+
+
+
 <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-6">Campus Reviews</h1>
-  
-    <div class="review-list">
-      <div *ngFor="let review of reviews$ | async" class="mb-6 bg-white rounded-lg shadow-md p-4">
-        <div class="flex justify-between items-start">
-          <div>
-            <h2 class="text-xl font-semibold">{{ review.title }}</h2>
-            <p class="text-gray-500 text-sm">
-              Posted {{ review.createdAt | date:'mediumDate' }}
-            </p>
-          </div>
-          <div class="flex space-x-2">
-            <button (click)="likeReview(review.id)" class="text-blue-500 hover:text-blue-700">
-              <i class="fas fa-thumbs-up"></i> {{ review.numbersOfLikes }}
-            </button>
-            <button (click)="deleteReview(review.id)" class="text-red-500 hover:text-red-700">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </div>
-  
-        <p class="my-4">{{ review.content }}</p>
-  
-        <div *ngIf="review.media" class="my-4">
-          <img [src]="review.media" alt="Review media" class="max-w-full rounded-lg">
-        </div>
-  
-        <div class="border-t pt-3 mt-3">
-          <p class="text-sm text-gray-600 mb-2">Comments</p>
-          <div *ngIf="review.comments && review.comments.length > 0">
-            <div *ngFor="let comment of review.comments" class="bg-gray-50 p-2 rounded my-2">
-              <p class="text-sm">{{ comment.content }}</p>
-              <p class="text-xs text-gray-500">{{ comment.createdAt | date:'short' }}</p>
-            </div>
-          </div>
-          <p *ngIf="!review.comments || review.comments.length === 0" class="text-sm text-gray-500">
-            No comments yet
+  <h1 class="text-2xl font-bold mb-6">Campus Reviews</h1>
+
+  <div class="review-list">
+    <div *ngFor="let review of reviews" class="mb-6 bg-white rounded-lg shadow-md p-4">
+      <div class="flex justify-between items-start">
+        <div>
+          <h2 class="text-xl font-semibold">{{ review.title }}</h2>
+          <p class="text-gray-500 text-sm">
+            Posted {{ review.createdAt | date:'mediumDate' }}
           </p>
         </div>
+        <div class="flex space-x-2">
+          <button  class="text-blue-500 hover:text-blue-700">
+            <i class="fas fa-thumbs-up"></i> {{ review.numbersOfLikes }}
+          </button>
+          <button  class="text-red-500 hover:text-red-700">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+
+      <p class="my-4">{{ review.content }}</p>
+
+      <div *ngIf="review.media" class="my-4">
+        <img [src]="review.media" alt="Review media" class="max-w-full rounded-lg">
+      </div>
+
+      <div class="border-t pt-3 mt-3">
+        <p class="text-sm text-gray-600 mb-2">Comments</p>
+        <div *ngIf="review.comments && review.comments.length > 0">
+          <div *ngFor="let comment of review.comments" class="bg-gray-50 p-2 rounded my-2">
+            <p class="text-sm">{{ comment.content }}</p>
+            <p class="text-xs text-gray-500">{{ comment.createdAt | date:'short' }}</p>
+          </div>
+        </div>
+        <p *ngIf="!review.comments || review.comments.length === 0" class="text-sm text-gray-500">
+          No comments yet
+        </p>
       </div>
     </div>
-  
-    <!-- Loading indicator -->
-    <div *ngIf="loading" class="flex justify-center my-4">
-      <div class="spinner">Loading...</div>
-    </div>
-  
-    <!-- End of content indicator -->
-    <div *ngIf="!(reviewService.canLoadMore())" class="text-center text-gray-500 my-4">
-      No more reviews to load
-    </div>
   </div>
+
+  <!-- Loading indicator -->
+  <div *ngIf="loading" class="flex justify-center my-4">
+    <div class="spinner">Loading...</div>
+  </div>
+
+  <!-- End of content indicator -->
+  <div *ngIf="!loading" class="text-center text-gray-500 my-4">
+    No more reviews to load
+  </div>
+</div>
+</div>
