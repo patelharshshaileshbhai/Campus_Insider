@@ -471,6 +471,19 @@ export const addComment = asyncHandler(
                 }
             },
             content
+         },
+         select:{
+            id:true,
+            content:true,
+            createdAt:true,
+            user:{
+                select:{
+                    id:true,
+                    fullname:true,
+                    username:true,
+                    profileUrl:true
+                }
+            }
          }
       })
 
