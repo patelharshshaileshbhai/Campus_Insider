@@ -8,6 +8,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { FeedComponent } from './components/feed/feed/feed.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ReviewComponent } from './components/review/review.component';
+import { CreatePostComponent } from './components/Post/create-post/create-post.component';
 
 export const routes: Routes = [
     {
@@ -45,5 +46,9 @@ export const routes: Routes = [
     {
         path:'review',
         component:ReviewComponent
+    },
+    {
+        path:'create-post',
+        component:CreatePostComponent
     }
 ];

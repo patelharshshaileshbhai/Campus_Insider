@@ -1,0 +1,77 @@
+<div>
+    <div class="w-11/12 mx-auto max-h-[100vh] ">
+
+       
+        <div class="border-black border-4 my-8   border-solid h-[90vh] ">
+           <form action="
+            " class="" [formGroup]="postData" (ngSubmit)="onSubmit()">
+            <div class="flex h-[85vh] ml-6  flex-col ">
+                <div class="h-[50%]">
+                    <!-- image input  -->
+                    <div>
+                        <label for="media">Image</label>
+                        <input 
+                        type="file"
+                        id="images"
+                        accept="image/*"
+                        multiple
+                        (change)="onFileSelect($event)"
+                        class="form-control"
+                        [class.is-invalid]="images.touched && images.invalid">
+                    </div>
+       
+                    <!-- image preview  -->
+                    <div class="h-[40vh] w-[40vw] aspect-square" >
+
+                        @for (item of imagePreviews; track $index) {
+                            <img [src]="item.preview" class="" [alt]="'Image' + $index">
+                            <button type="button" (click)="removeImage($index)">
+                                Remove
+                            </button>
+                        }
+
+                    </div>
+              
+                </div>
+    
+                <div class="h-[50%] flex flex-col gap-16 ">
+                    <div>
+                        <div class="brutalist-container relative">
+                            <input
+                              placeholder="TYPE HERE"
+                              class="brutalist-input smooth-type"
+                              type="text"
+                              name="title" id="title" formControlName="title" 
+                            />
+                            <label class="brutalist-label">Title</label>
+                            @if(postData.controls['title'].touched && postData.controls['title'].errors?.['required']){
+                                <span class="error absolute">Title is Required</span>
+                            }
+                          </div>
+                    </div>
+                   
+                    <div class="brutalist-container relative">
+                        <label class="brutalist-label" for="content">Description</label>
+                        <textarea
+                        placeholder="TYPE HERE"
+                        class="brutalist-input smooth-type"
+                         name="content" id="content" formControlName="content"></textarea>
+                        @if(postData.controls['content'].touched && postData.controls['content'].errors?.['required']){
+                            <span class="absolute -top-7 -right-8 error">Description is Required</span>
+                        }
+                    </div>
+                </div>
+         
+                <div class="flex gap-4">
+                    <button class="second-button" type="button" (click)="resetForm()">Reset</button>
+                    <button class="primary-button " [disabled]="postData.invalid" type="submit" >Post</button>
+                </div>
+    
+
+            </div>
+         
+           </form>
+        </div>
+        
+    </div>
+</div>
