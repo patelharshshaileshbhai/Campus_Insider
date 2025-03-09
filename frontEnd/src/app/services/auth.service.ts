@@ -1,20 +1,58 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IregisterUser } from '../models/auth/auth.model';
 import { environment } from '../../environments/environment.development';
-import { authconst } from '../constants/authcons';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
+import { apiEndPoints } from '../shared/apiEnds';
+import { IloginRes, IResponse } from '../models/auth/auth.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http : HttpClient) { }
+  private token : string | null = null ;
 
-  singup(credentials:IregisterUser){
+  constructor(private http : HttpClient,private router: Router) { this.loadToken(); }
 
-    this.http.post<unknown>(environment.API_URL + authconst.LOGIN_URL ,credentials ).subscribe((res) => {
-
-    })
-
+  login(eou:string,password:string){
+    return this.http.post<IloginRes>(`${environment.BASE_URL}${apiEndPoints.LOGIN_URL}`,{eou,password}).pipe(tap(response => {
+      console.log(response);
+      const token = response.data.token;
+      this.setToken(token);
+    }))
   }
+
+
+  setToken(token: string) {
+    this.token = token;
+    localStorage.setItem(environment.TOKEN_KEY, token);
+  }
+
+  getToken() {
+    return this.token;
+  }
+
+
+  loadToken() {
+    this.token = localStorage.getItem(environment.TOKEN_KEY) || null;
+  }
+
+  isLoggedIn():boolean{
+    if(localStorage.getItem(environment.TOKEN_KEY)){
+      return true
+    }else return false
+  }
+
+  logout() {
+    this.token = null;
+    localStorage.removeItem(environment.TOKEN_KEY);
+    this.router.navigate(['/signin/login']);
+  }
+  
+
+  getUserData(){
+    
+  }
+
+
 }

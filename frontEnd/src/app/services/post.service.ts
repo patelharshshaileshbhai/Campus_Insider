@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, BehaviorSubject, filter, map, tap } from 'rxjs';
 import { IResponse } from '../models/auth/auth.model';
 import { environment } from '../../environments/environment.development';
-import { apiEndPontconts, authconst } from '../constants/authcons';
 import { Post } from '../models/post.mode';
+import { apiEndPoints } from '../shared/apiEnds';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class PostService {
 
   private fetchPosts(): void {
     if (this.postsSubject.value === null) {
-      this.http.get<IResponse>(environment.BASE_URL + apiEndPontconts.POST + '/get').subscribe({
+      this.http.get<IResponse>(`${environment.BASE_URL}${apiEndPoints.GET_POST}`).subscribe({
         next: (response) => {
           this.postsSubject.next(response);
         },

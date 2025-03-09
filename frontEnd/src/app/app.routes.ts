@@ -9,6 +9,7 @@ import { FeedComponent } from './components/feed/feed/feed.component';
 import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ReviewComponent } from './components/review/review.component';
 import { CreatePostComponent } from './components/Post/create-post/create-post.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -33,22 +34,25 @@ export const routes: Routes = [
     {
        path:'',
        component:HomePageComponent,
-       
     },
     {
         path:'profile',
-        component:ProfilePageComponent
+        component:ProfilePageComponent,
+        canActivate:[AuthGuard]
     },
     {
       path:'feed-page',
-      component:FeedpageComponent
+      component:FeedpageComponent,
+      canActivate:[AuthGuard]
     },
     {
         path:'review',
-        component:ReviewComponent
+        component:ReviewComponent,
+        canActivate:[AuthGuard]
     },
     {
         path:'create-post',
-        component:CreatePostComponent
+        component:CreatePostComponent,
+        canActivate:[AuthGuard]
     }
 ];

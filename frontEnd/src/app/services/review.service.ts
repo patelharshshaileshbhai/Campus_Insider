@@ -2,9 +2,9 @@ import { HttpClient, HttpParams  } from '@angular/common/http';
 import {  Injectable } from '@angular/core';
 import { BehaviorSubject, delay, filter, map, Observable, of, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
-import { apiEndPontconts, authconst } from '../constants/authcons';
 import { IResponse } from '../models/auth/auth.model';
 import { Post } from '../models/post.mode';
+import { apiEndPoints } from '../shared/apiEnds';
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export class ReviewService {
 
   private fetchReviews():void{
    if(this.reviewsSubject.value == null) {
-    this.http.get<IResponse>(environment.BASE_URL + apiEndPontconts.GET_REVIEW ).subscribe({
+    this.http.get<IResponse>(`${environment.BASE_URL}${apiEndPoints.GET_REVIEW}`).subscribe({
       next : (response) => {
         this.reviewsSubject.next(response);
       },

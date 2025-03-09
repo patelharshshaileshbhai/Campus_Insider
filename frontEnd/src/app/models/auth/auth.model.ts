@@ -14,3 +14,23 @@ export interface IResponse {
     error: string | null
 }
 
+export interface IloginRes{
+    
+        statusCode: number,
+        data: {
+            userData: {
+                id: string,
+                fullname: string,
+                email: string,
+                username: string,
+                gender: string,
+                profileUrl: string
+            },
+            token: string
+        },
+        message:string, 
+        success:boolean,
+        error: string | null
+    
+}
+
