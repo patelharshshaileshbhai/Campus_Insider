@@ -7,17 +7,18 @@
         <div>
             @if(!logedIN){
                 <button [routerLink]="['/signin']" routerLinkActive="router-link-active"  class="bg-white hidden  md:block  font-semibold text-purple-700 px-4 py-2 rounded-md hover:bg-slate-100  transition-all duration-300">log In</button>
+                <div class="h-6 w-6 text-white block md:hidden">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
             }@else {
                 <a href="">
                     <div class="rounded-full w-6 h-6">
-                        <img src="" alt="User Profile">
+                        <img src={{userData}} alt="User Profile">
                     </div>
                 </a>
             }
             
-            <div class="h-6 w-6 text-white block md:hidden">
-            <p>svg</p>   
-            </div>
+            
         </div>
     </div>
 </div>

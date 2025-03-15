@@ -10,6 +10,7 @@ import { FeedpageComponent } from './pages/feedpage/feedpage.component';
 import { ReviewComponent } from './components/review/review.component';
 import { CreatePostComponent } from './components/Post/create-post/create-post.component';
 import { AuthGuard } from './Guards/auth.guard';
+import { ViewComponent } from './pages/view/view.component';
 
 export const routes: Routes = [
     {
@@ -32,27 +33,36 @@ export const routes: Routes = [
         ]
     },
     {
+        path:'home',
+        component:HomePageComponent,
+
+    },
+    {
        path:'',
-       component:HomePageComponent,
+       component:ViewComponent,    
+       children:[
+        {
+            path:'profile',
+            component:ProfilePageComponent,
+            canActivate:[AuthGuard]
+        },
+        {
+            path:'feed-page',
+            component:FeedpageComponent,
+            canActivate:[AuthGuard]
+          },
+          {
+              path:'review',
+              component:ReviewComponent,
+              canActivate:[AuthGuard]
+          },
+          {
+              path:'create-post',
+              component:CreatePostComponent,
+              canActivate:[AuthGuard]
+          }
+      ]
     },
-    {
-        path:'profile',
-        component:ProfilePageComponent,
-        canActivate:[AuthGuard]
-    },
-    {
-      path:'feed-page',
-      component:FeedpageComponent,
-      canActivate:[AuthGuard]
-    },
-    {
-        path:'review',
-        component:ReviewComponent,
-        canActivate:[AuthGuard]
-    },
-    {
-        path:'create-post',
-        component:CreatePostComponent,
-        canActivate:[AuthGuard]
-    }
+   
+    
 ];

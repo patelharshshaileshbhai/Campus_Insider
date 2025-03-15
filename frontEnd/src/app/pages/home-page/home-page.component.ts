@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/common/header/header.component';
 import { CardComponent } from "../../components/common/card/card.component";
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 
 @Component({

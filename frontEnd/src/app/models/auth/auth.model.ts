@@ -34,3 +34,40 @@ export interface IloginRes{
     
 }
 
+export interface ISignUPRes{
+    
+        statusCode: number,
+        data: {
+            createdUser: {
+                id: string,
+                fullname: string,
+                email : string ,
+               
+                username:string ,
+                gender:string,
+                profileUrl:string,
+            },
+            token:string,
+        },
+        message:string,
+        success:boolean,
+        error: string | null
+    
+}
+
+export interface singupModel{
+    fullname:string,
+    username: string,
+    email:string,
+    password:string,
+    gender: string,
+}
+
+export interface IUser  {
+    id : string ,
+    fullname:string,
+    email:string,
+    username: string,
+    gender: string,
+    profileUrl:string
+}

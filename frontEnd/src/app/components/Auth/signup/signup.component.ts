@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { flush } from '@angular/core/testing';
+import { catchError, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -10,24 +13,40 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SignupComponent {
 show = false;
+signUpForm : FormGroup = new FormGroup({});
+errorMessage : string | null = null
 
-singupData : FormGroup = new FormGroup({});
+constructor(private fb:FormBuilder,
+            private authService : AuthService,
+            private router:Router){this.initialFormData();}
 
-constructor(){this.initialFormData();}
-
-initialFormData (formData? : any ){              //chanage tha any type to model 
-this.singupData = new FormGroup({
-
-    userName:new FormControl(formData ? formData.userName :''),
-    fullName:new FormControl(formData ? formData.fullName :''),
-    email:new FormControl(formData ? formData.email : ''),
-    password:new FormControl(formData ? formData.password : ''),
-    gender:new FormControl(formData ? formData.gender : '')
-
-   })
+initialFormData (){              //chanage tha any type to model 
+this.signUpForm = this.fb.group({
+  username:['',Validators.required],
+  fullname:['',Validators.required],
+  password:['',Validators.required],
+  gender:['',Validators.required],
+  email:['',Validators.required],
+})
   }
 
   handleSignup(){
-    console.log(this.singupData.value)
+    if(this.signUpForm.valid){
+      const signupData = this.signUpForm.value;
+      this.authService.signup(signupData).pipe(
+        tap(() => {
+          this.router.navigate(['/feed-page']);
+        }),
+        catchError(error => {
+          this.errorMessage = error.message
+          return throwError(() => error);
+        })
+      ).subscribe();
+    }
+   
+  }
+
+  hanglegoogle(){
+    
   }
 }
