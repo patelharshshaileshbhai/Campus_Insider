@@ -116,5 +116,6 @@ export const googleCallback = asyncHandler(async (req: Request, res: Response) =
     //   password: 'oauth2',
     };
   
-    res.status(StatusCode.OK).json(new ApiResponse(StatusCode.OK, { userData, token }, 'Google login successful'));
+    // res.status(StatusCode.OK).json(new ApiResponse(StatusCode.OK, { userData, token }, 'Google login successful'));
+    res.redirect(`http://localhost:4200/googleauth?userData=${JSON.stringify(userData)}&token=${token}`);
   });
