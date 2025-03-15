@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { environment } from '../../environments/environment.development';
 
  @Injectable()
 
@@ -14,7 +15,9 @@ import { AuthService } from '../services/auth.service';
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpheWRlZXAgUGF0aWwiLCJpYXQiOjE1MTYyMzkwMjJ9.yt3EOXf60R62Mef2oFpbFh2ihkP5qZ4fM8bjVnF8YhA";//his.authService.getToken();
+    const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZhNzllNDFlLTg5MTYtNGMwNS05YTA3LTcxZDM5YTg3Mzk3MiIsImlhdCI6MTc0MjAzODc2MCwiZXhwIjoxNzQyMTI1MTYwfQ.RH3gKk4RyT5TSosDX--nGJ5jdfCoQbMc2X2dugwGoyQ'
+    
+    console.log('auth token ',authToken)
 
     if (authToken) {
       // Clone the request and attach the token
@@ -23,6 +26,7 @@ import { AuthService } from '../services/auth.service';
           Authorization: `Bearer ${authToken}`
         }
       });
+      return next.handle(authReq);
     }
 
     return next.handle(req).pipe(catchError(error => {

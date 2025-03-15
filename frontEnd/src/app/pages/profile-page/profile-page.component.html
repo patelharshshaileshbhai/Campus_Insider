@@ -33,14 +33,14 @@
             <img class="rounded-t-lg object-cover h-[200px] w-[800px]" src="https://images.unsplash.com/photo-1739382122868-841cb1e669df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D" alt="bg image">
         </div>
         <div class="absolute rounded-full top-24 left-8 h-40 bg-white w-40">
-            <img   class="absolute rounded-full left-2 top-2 object-cover h-36 w-36" src="https://plus.unsplash.com/premium_photo-1737659254845-d52fe134d589?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"  alt="profile image">
+            <img   class="absolute rounded-full left-2 top-2 object-cover h-36 w-36" src={{userData?.profileUrl}}  alt="profile image">
         </div>
         <div class="mt-14 ml-10 space-x-1">
             <div class="flex ">
-              <h1 class="text-2xl font-bold ">Cassie White</h1>
+              <h1 class="text-2xl font-bold ">{{userData?.fullname}}</h1>
               <i class="fa-solid fa-certificate " style="color: #0091ff;"></i>
             </div>
-            <h2 class="text-xl font-semibold">Student at KALOL INSTITUTE OF TECH. & RESEARCH CENTER ,KALOL 026</h2>
+            <h2 class="text-xl font-semibold">{{userData?.username}}</h2>
             <h3 class="text-lg text-slate-500">Kalol, Gujarat, India </h3>
         </div>
      

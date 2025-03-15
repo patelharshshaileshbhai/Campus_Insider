@@ -48,5 +48,18 @@ export class PostService {
       })
     );
   }
+
+  createPost(formData:any){
+  console.log('create post called')
+    const authToken = localStorage.getItem(environment.TOKEN_KEY); // Fetch the token from local storage
+  
+    const headers = {
+      Authorization: `Bearer ${authToken}`,// Add the token in the header manually
+    };
+  this.http.post(`${environment.BASE_URL}${apiEndPoints.CREATE_POST}`,formData,{headers}).pipe(tap(respone => {
+
+    console.log('create post responser',respone)
+  })).subscribe()
+  }
 }
 

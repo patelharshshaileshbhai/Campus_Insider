@@ -76,19 +76,21 @@ export class CreatePostComponent implements OnInit {
 
       //Append all images 
       this.images.controls.forEach((control, index) => {
-        formData.append(`media[${index}]`,control.value);
+        formData.append(`file[${index}]`,control.value);
       });
 
+      this.postService.createPost(formData);
+
       //API call 
-      this.http.post('',formData).subscribe(
-        (response) => {
-          console.log('Upload Successful',response);
-          this.resetForm();
-        },
-        (error) => {
-          console.error('Upload Failed ',error);
-        }
-      )
+      // this.http.post('',formData).subscribe(
+      //   (response) => {
+      //     console.log('Upload Successful',response);
+      //     this.resetForm();
+      //   },
+      //   (error) => {
+      //     console.error('Upload Failed ',error);
+      //   }
+      // )
 
     }
   }

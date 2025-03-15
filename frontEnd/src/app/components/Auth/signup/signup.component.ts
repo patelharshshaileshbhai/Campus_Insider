@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { flush } from '@angular/core/testing';
 import { catchError, tap, throwError } from 'rxjs';
@@ -11,14 +11,15 @@ import { catchError, tap, throwError } from 'rxjs';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit{
 show = false;
 signUpForm : FormGroup = new FormGroup({});
 errorMessage : string | null = null
 
 constructor(private fb:FormBuilder,
             private authService : AuthService,
-            private router:Router){this.initialFormData();}
+            private router:Router,
+            private route: ActivatedRoute){this.initialFormData();}
 
 initialFormData (){              //chanage tha any type to model 
 this.signUpForm = this.fb.group({
@@ -28,6 +29,18 @@ this.signUpForm = this.fb.group({
   gender:['',Validators.required],
   email:['',Validators.required],
 })
+  }
+
+
+  ngOnInit() {
+    const userData = this.route.snapshot.queryParamMap.get('userData');
+    if (userData) {
+      console.log("userData ",userData)
+      // localStorage.setItem('auth_token', token); // Store the token
+      this.router.navigate(['/feed-page']); // Redirect to feed page
+    } else {
+      this.router.navigate(['/login']); // Handle failure
+    }
   }
 
   handleSignup(){
@@ -46,7 +59,10 @@ this.signUpForm = this.fb.group({
    
   }
 
-  hanglegoogle(){
+
+  hanglegoogle() {
+  this.authService.googleAuth();
+}
     
-  }
+  
 }

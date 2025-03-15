@@ -11,6 +11,7 @@ import { ReviewComponent } from './components/review/review.component';
 import { CreatePostComponent } from './components/Post/create-post/create-post.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { ViewComponent } from './pages/view/view.component';
+import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
 
 export const routes: Routes = [
     {
@@ -38,8 +39,12 @@ export const routes: Routes = [
 
     },
     {
+        path:'googleauth',
+        component:GoogleAuthComponent
+    },
+    {
        path:'',
-       component:ViewComponent,    
+       component:ViewComponent,
        children:[
         {
             path:'profile',

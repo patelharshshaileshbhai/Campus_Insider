@@ -34,6 +34,26 @@ export interface IloginRes{
     
 }
 
+export interface IUserRes{
+    
+    statusCode: number,
+    data: {
+        user: {
+            id: string,
+            fullname: string,
+            email: string,
+            username: string,
+            gender: string,
+            profileUrl: string
+        },
+        token: string
+    },
+    message:string, 
+    success:boolean,
+    error: string | null
+
+}
+
 export interface ISignUPRes{
     
         statusCode: number,

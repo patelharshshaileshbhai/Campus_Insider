@@ -67,4 +67,10 @@ if(this.loginForm.valid){
 
 }
 }
+
+
+hanglegoogle() {
+ 
+ this.authService.googleAuth();
+}
 }

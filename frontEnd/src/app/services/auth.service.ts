@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, OnInit, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { apiEndPoints } from '../shared/apiEnds';
-import { IloginRes, IResponse, ISignUPRes, IUser, singupModel } from '../models/auth/auth.model';
+import { IloginRes, IResponse, ISignUPRes, IUser, IUserRes, singupModel } from '../models/auth/auth.model';
 import { User } from '../models/review.model';
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,9 @@ export class AuthService implements OnInit {
     return this.http.post<IloginRes>(`${environment.BASE_URL}${apiEndPoints.LOGIN_URL}`,{eou,password}).pipe(tap(response => {
       console.log(response);
       const token = response.data.token;
-      const userData = response.data.userData;
-      localStorage.setItem(environment.USER_KEY,JSON.stringify(userData));
-      this.currentUserSignal.set(userData);
-      this.setToken(token);
-    }))
+      this.setToken(token)
+    }),
+    )
   }
 
 
@@ -38,12 +36,11 @@ export class AuthService implements OnInit {
 
       console.log('sign up response ',response);
       const token = response.data.token;
-      const userData = response.data.createdUser;
-      localStorage.setItem(environment.USER_KEY,JSON.stringify(userData));
-      this.currentUserSignal.set(userData);
       this.setToken(token);
 
-    }));
+    }),
+   
+  );
   }
 
   setToken(token: string) {
@@ -82,11 +79,39 @@ export class AuthService implements OnInit {
 
   }
 
-  oAuthcall(){
-    return 
+
+  fetchUserInfo() {
+    console.log('fetchUserInfo called');
+  
+    const authToken = localStorage.getItem(environment.TOKEN_KEY); // Fetch the token from local storage
+  
+    const headers = {
+      Authorization: `Bearer ${authToken}` // Add the token in the header manually
+    };
+  
+    this.http.get<IUserRes>(`${environment.BASE_URL}${apiEndPoints.GET_ME}`, { headers }).pipe(
+      tap(response => {
+        console.log("User data from fetchUserInfo response", response.data.user);
+        const userData = response.data.user;
+        localStorage.setItem(environment.USER_KEY, JSON.stringify(userData));
+        this.currentUserSignal.set(userData);
+      })
+    ).subscribe();
   }
 
+  // fetchUserInfo(){
+  //   console.log('fetchusercalled function call ')
+  // this.http.get<IUserRes>(`${environment.BASE_URL}${apiEndPoints.GET_ME}`).pipe(tap(response => {   
+  //     console.log("user data form fetcch user reposne ",response.data)
+  //     const userData = response.data.user;
+  //     localStorage.setItem(environment.USER_KEY,JSON.stringify(userData));
+  //     this.currentUserSignal.set(userData);
+  //   })).subscribe();
+  // }
 
+googleAuth(){
+  window.location.href = 'http://localhost:8800/api/auth/google';
+}
 
 
 }
