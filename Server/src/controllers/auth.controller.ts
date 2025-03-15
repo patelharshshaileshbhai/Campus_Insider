@@ -117,5 +117,5 @@ export const googleCallback = asyncHandler(async (req: Request, res: Response) =
     };
   
     // res.status(StatusCode.OK).json(new ApiResponse(StatusCode.OK, { userData, token }, 'Google login successful'));
-    res.redirect(`http://localhost:4200/googleauth?userData=${JSON.stringify(userData)}&token=${token}`);
+    res.redirect(`http://localhost:4200/googleauth?token=${token}`);
   });

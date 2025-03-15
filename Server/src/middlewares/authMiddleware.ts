@@ -34,7 +34,7 @@ export const isAuthenticated= asyncHandler(async(req,res,next)=>{
        return
     }
 
-    const user=await prisma.user.findUnique({where:{id:(decoded as JwtPayload).id},select:{id:true,fullname:true,email:true,username:true,gender:true}})
+    const user=await prisma.user.findUnique({where:{id:(decoded as JwtPayload).id},select:{id:true,fullname:true,email:true,username:true,gender:true,profileUrl:true}})
 
     if(!user){
         res.status(401).json(new ApiResponse(401,null,"Unauthorized"))
