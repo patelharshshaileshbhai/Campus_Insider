@@ -27,6 +27,7 @@ export class AuthService implements OnInit {
       const token = response.data.token;
       this.setToken(token)
     }),
+    switchMap(() => this.fetchUserInfo())
     )
   }
 
@@ -80,34 +81,34 @@ export class AuthService implements OnInit {
   }
 
 
-  fetchUserInfo() {
-    console.log('fetchUserInfo called');
+  // fetchUserInfo() {
+  //   console.log('fetchUserInfo called');
   
-    const authToken = localStorage.getItem(environment.TOKEN_KEY); // Fetch the token from local storage
+  //   const authToken = localStorage.getItem(environment.TOKEN_KEY); // Fetch the token from local storage
   
-    const headers = {
-      Authorization: `Bearer ${authToken}` // Add the token in the header manually
-    };
+  //   const headers = {
+  //     Authorization: `Bearer ${authToken}` // Add the token in the header manually
+  //   };
   
-    this.http.get<IUserRes>(`${environment.BASE_URL}${apiEndPoints.GET_ME}`, { headers }).pipe(
-      tap(response => {
-        console.log("User data from fetchUserInfo response", response.data.user);
-        const userData = response.data.user;
-        localStorage.setItem(environment.USER_KEY, JSON.stringify(userData));
-        this.currentUserSignal.set(userData);
-      })
-    ).subscribe();
-  }
-
-  // fetchUserInfo(){
-  //   console.log('fetchusercalled function call ')
-  // this.http.get<IUserRes>(`${environment.BASE_URL}${apiEndPoints.GET_ME}`).pipe(tap(response => {   
-  //     console.log("user data form fetcch user reposne ",response.data)
-  //     const userData = response.data.user;
-  //     localStorage.setItem(environment.USER_KEY,JSON.stringify(userData));
-  //     this.currentUserSignal.set(userData);
-  //   })).subscribe();
+  //   this.http.get<IUserRes>(`${environment.BASE_URL}${apiEndPoints.GET_ME}`).pipe(
+  //     tap(response => {
+  //       console.log("User data from fetchUserInfo response", response.data.user);
+  //       const userData = response.data.user;
+  //       localStorage.setItem(environment.USER_KEY, JSON.stringify(userData));
+  //       this.currentUserSignal.set(userData);
+  //     })
+  //   ).subscribe();
   // }
+
+  fetchUserInfo(){
+    console.log('fetchusercalled function call ')
+ return this.http.get<IUserRes>(`${environment.BASE_URL}${apiEndPoints.GET_ME}`).pipe(tap(response => {   
+      console.log("user data form fetcch user reposne ",response.data)
+      const userData = response.data.user;
+      localStorage.setItem(environment.USER_KEY,JSON.stringify(userData));
+      this.currentUserSignal.set(userData);
+    }))
+  }
 
 googleAuth(){
   window.location.href = 'http://localhost:8800/api/auth/google';

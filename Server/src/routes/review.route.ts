@@ -6,16 +6,16 @@ import upload from "../middlewares/multer";
 
 const router:Router=Router();
 
-// router.post('/create',
-//     upload.fields([
-//         {
-//             name:'file',
-//             maxCount:3
-//         }
-//     ]),isAuthenticated,createReview);upload.array('media')
+router.post('/create',
+    upload.fields([
+        {
+            name:'file',
+            maxCount:3
+        }
+    ]),isAuthenticated,createReview);upload.array('media')
 
 
-router.post('/create',isAuthenticated,upload.array('file'),createReview);
+// router.post('/create',isAuthenticated,upload.array('file'),createReview);
     
 
 // //getAllReviews

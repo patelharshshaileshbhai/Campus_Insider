@@ -18,7 +18,7 @@ export class GoogleAuthComponent  implements OnInit{
     console.log("user data ", token)
     if (token) {
       localStorage.setItem(environment.TOKEN_KEY, token); // Store the token
-      this.authService.fetchUserInfo();
+      this.authService.fetchUserInfo().subscribe();
       this.router.navigate(['/feed-page']); // Redirect to feed page
     } else {
       this.router.navigate(['/login']); // Handle failure

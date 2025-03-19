@@ -16,6 +16,7 @@ export class FeedpageComponent implements OnInit{
   constructor(private authService:AuthService){}
 
   ngOnInit(): void {
+    
     this.userData = this.authService.currentUser();
     console.log('user DAta from feed page ',this.userData)
   }

@@ -43,7 +43,13 @@ export const routes: Routes = [
         component:GoogleAuthComponent
     },
     {
+        path:'',
+        redirectTo:'feed-page',
+        pathMatch:'full'
+    },
+    {
        path:'',
+
        component:ViewComponent,
        children:[
         {
