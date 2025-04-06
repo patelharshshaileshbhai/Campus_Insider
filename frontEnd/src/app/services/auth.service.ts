@@ -50,7 +50,7 @@ export class AuthService implements OnInit {
   }
 
   getToken() {
-    return this.token;
+    return localStorage.getItem(environment.TOKEN_KEY);
   }
 
 

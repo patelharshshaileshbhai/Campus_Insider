@@ -1,7 +1,16 @@
 <div class="max-w-[100vw] overflow-x-hidden">
-  @if(showDialog){
-    <app-dialog [title]="'Are you sure want to logOut ? '" (handlebtn1Click)="handleLogout()" (handlebtn2Click)="closeDialog()"></app-dialog>
-  }
+  <div class="z-10">
+    @if(showDialog){
+      <app-dialog
+      [title]="'Are You Sure Want to Log Out ? '"
+      [btn1Label]="'Log Out'"
+      [btn2Label]="'Cancel'"
+      (handleBtn1Click)="handleLogout()"
+      (handleBtn2Click)="closeDialog()"
+    />
+     }
+  </div>
+
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <div class="relative   flex flex-col gap-4">

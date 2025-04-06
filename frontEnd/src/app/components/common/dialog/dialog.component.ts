@@ -7,10 +7,12 @@ import { Component, input, output } from '@angular/core';
   styleUrl: './dialog.component.scss'
 })
 export class DialogComponent {
-title = input('');
-btn1Lable = input('Okay')
-btn2Lable = input('Cancel')
-handlebtn1Click = output()
-handlebtn2Click = output()
+
+title = input.required<string>();
+btn1Label = input<string>('OK');
+btn2Label = input<string>('Cancel');
+
+handleBtn1Click = output<void>();
+handleBtn2Click = output<void>();
 
 }

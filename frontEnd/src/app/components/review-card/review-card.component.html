@@ -1,0 +1,225 @@
+<!-- review-card.component.html -->
+ @for (review of reviews; track $index) {
+
+
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg">
+
+    <!-- Card Header -->
+    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <img [src]="review.user?.profileUrl" alt="Author avatar" class="w-10 h-10 rounded-full object-cover">
+          <div>
+            <h3 class="font-medium text-gray-900 dark:text-white">{{ review.user?.usename }}</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400" [title]="formatDate(review.createdAt)">
+              {{ getTimeAgo(review.createdAt) }}
+            </p>
+          </div>
+        </div>
+        
+        <!-- Voting -->
+        <div class="flex items-center space-x-1">
+          <button (click)="upvote()" class="p-1 text-gray-500 hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            </svg>
+          </button>
+          <span class="font-medium text-gray-700 dark:text-gray-300">{{ review?.votes }}</span>
+          <button (click)="downvote()" class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Card Content -->
+    <div class="p-4">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{{ review.title }}</h2>
+      <p class="text-gray-700 dark:text-gray-300 line-clamp-4 mb-2">{{ review.content }}</p>
+      @if(isLongContent(review.content)){
+        <button 
+       
+        (click)="openModal()" 
+        class="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+      >
+        Read more
+      </button>
+      }
+     
+    </div>
+    
+    <!-- Card Footer -->
+    <!-- <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700 flex items-center justify-between">
+      <button 
+        (click)="toggleReplies()" 
+        class="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        {{ review?.comments?.length }} {{ review?.comments?.length === 1 ? 'Reply' : 'Replies' }}
+      </button>
+      
+      <span class="text-xs text-gray-500 dark:text-gray-400">
+        {{ formatDate(review.createdAt) }}
+      </span>
+    </div> -->
+    
+     <!-- Replies Section 
+     @if (showReplies) {
+        <div class="border-t border-gray-200 dark:border-gray-700">
+     
+    
+       Reply Form
+      <div class="p-4 bg-gray-50 dark:bg-gray-700">
+        <h4 class="font-medium text-gray-900 dark:text-white mb-3">Add your reply</h4>
+        <div class="flex space-x-3">
+          <img src="/placeholder.svg?height=40&width=40" alt="Your avatar" class="w-8 h-8 rounded-full">
+          <div class="flex-1">
+            <textarea 
+              formControlName="newReply" 
+              placeholder="Share your thoughts..." 
+              class="w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800"
+              rows="2"
+            ></textarea>
+            <div class="mt-2 flex justify-end">
+              <button 
+                (click)="submitReply()" 
+                [disabled]="!newReply.trim()" 
+                class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Post Reply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      Reply List
+       @if(review?.comments?.length > 0){
+        
+       
+      <div class="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800">
+        <h4 class="font-medium text-gray-900 dark:text-white p-4 pb-2">
+          {{ review?.comments?.length }} {{ review?.comments?.length === 1 ? 'Reply' : 'Replies' }}
+        </h4>
+        @for (reply of review?.comments; track $index) {
+
+       
+        <div  class="p-4 hover:bg-gray-50 dark:hover:bg-gray-750">
+          <div class="flex space-x-3">
+            <img [src]="reply.author?.avatar" alt="Reply author avatar" class="w-8 h-8 rounded-full">
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-medium text-gray-900 dark:text-white">{{ reply.author?.name }}</h4>
+                  <p class="text-xs text-gray-500 dark:text-gray-400" [title]="formatDate(reply.createdAt)">
+                    {{ getTimeAgo(reply.createdAt) }}
+                  </p>
+                </div>
+                
+                 Reply Voting 
+                <div class="flex items-center space-x-1">
+                  <button (click)="upvoteReply(reply)" class="p-1 text-gray-500 hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                  </button>
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ reply.votes }}</span>
+                  <button (click)="downvoteReply(reply)" class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <p class="mt-1 text-sm text-gray-700 dark:text-gray-300">{{ reply.content }}</p>
+            </div>
+          </div>
+        </div>
+    }
+      </div>
+
+    }
+      @if(review?.comments?.length === 0){
+
+     
+      <div class="p-4 text-center text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800">
+        No replies yet. Be the first to reply!
+      </div>
+    }
+        </div>
+    }
+  </div>
+  
+   Review Modal 
+      @if(modalOpen){
+    <ng-container>
+        <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" (click)="closeModal()">
+          <div 
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto" 
+            (click)="$event.stopPropagation()"
+          >
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{{ review.title }}</h2>
+                <button 
+                  (click)="closeModal()" 
+                  class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="flex items-center space-x-3 mb-4">
+                <img [src]="review?.author?.avatar" alt="Author avatar" class="w-10 h-10 rounded-full object-cover">
+                <div>
+                  <h3 class="font-medium text-gray-900 dark:text-white">{{ review?.author?.name }}</h3>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">
+                    {{ formatDate(review.createdAt) }}
+                  </p>
+                </div>
+              </div>
+              
+              <div class="text-gray-700 dark:text-gray-300 space-y-4">
+                <p>{{ review.content }}</p>
+              </div>
+              
+              <div class="flex justify-between items-center mt-4 pt-4 border-t">
+                <div class="flex items-center space-x-1">
+                  <button (click)="upvote()" class="p-1 text-gray-500 hover:text-green-500 dark:text-gray-400 dark:hover:text-green-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                  </button>
+                  <span class="font-medium text-gray-700 dark:text-gray-300">{{ review.votes }}</span>
+                  <button (click)="downvote()" class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+                
+                <button 
+                  (click)="closeModal(); toggleReplies()" 
+                  class="flex items-center text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  View Replies ({{ review?.comments?.length }})
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+   }
+   -->
+  
+  </div>
+  }

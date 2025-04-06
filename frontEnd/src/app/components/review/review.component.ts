@@ -2,10 +2,11 @@ import { Component, OnInit, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReviewService } from '../../services/review.service';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { ReviewCardComponent } from "../review-card/review-card.component";
 
 @Component({
   selector: 'app-review',
-  imports: [CommonModule,InfiniteScrollDirective],
+  imports: [CommonModule, InfiniteScrollDirective, ReviewCardComponent],
   templateUrl: './review.component.html',
   styleUrl: './review.component.scss'
 })

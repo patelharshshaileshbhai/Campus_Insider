@@ -12,6 +12,7 @@ import { CreatePostComponent } from './components/Post/create-post/create-post.c
 import { AuthGuard } from './Guards/auth.guard';
 import { ViewComponent } from './pages/view/view.component';
 import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,11 @@ export const routes: Routes = [
         path:'googleauth',
         component:GoogleAuthComponent
     },
+    
+    {
+        path:'newReview',
+        component:ReviewCardComponent
+    },
     {
         path:'',
         redirectTo:'feed-page',
@@ -49,7 +55,6 @@ export const routes: Routes = [
     },
     {
        path:'',
-
        component:ViewComponent,
        children:[
         {
@@ -74,6 +79,7 @@ export const routes: Routes = [
           }
       ]
     },
+
    
     
 ];
