@@ -30,6 +30,9 @@ export class ReviewService {
    }
   }
 
+  createReview(formData:any){
+    return this.http.post(`${environment.BASE_URL}${apiEndPoints.CREATE_REVIEW}`,formData)
+  }
 
   getReviews() : Observable<IResponse>{
     this.fetchReviews();

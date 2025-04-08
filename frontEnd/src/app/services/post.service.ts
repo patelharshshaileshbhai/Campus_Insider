@@ -5,6 +5,7 @@ import { IResponse } from '../models/auth/auth.model';
 import { environment } from '../../environments/environment.development';
 import { Post } from '../models/post.mode';
 import { apiEndPoints } from '../shared/apiEnds';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class PostService {
   private postsSubject  = new  BehaviorSubject<IResponse | null>(null);
   private posts$ : Observable<IResponse | null> = this.postsSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router : Router) {}
 
   private fetchPosts(): void {
     if (this.postsSubject.value === null) {
@@ -56,10 +57,19 @@ export class PostService {
     const headers = {
       Authorization: `Bearer ${authToken}`,// Add the token in the header manually
     };
-  this.http.post(`${environment.BASE_URL}${apiEndPoints.CREATE_POST}`,formData,{headers}).pipe(tap(respone => {
+  this.http.post(`${environment.BASE_URL}${apiEndPoints.CREATE_POST}`,formData,{headers}).pipe(tap(response => {
 
-    console.log('create post responser',respone)
-  })).subscribe()
+    console.log('create post responser',response)
+  })).subscribe({
+    next:(response) => {
+      console.log('create post resposne ',response);
+      alert('Post Create Successfully')
+      this.router.navigate(['/feed-page'])
+    },
+    error:(error)=>{
+        console.log('Error Occured in the Creat post',error)
+    }
+  })
   }
 }
 

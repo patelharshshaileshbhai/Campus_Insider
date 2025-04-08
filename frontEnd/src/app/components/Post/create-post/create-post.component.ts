@@ -41,22 +41,43 @@ export class CreatePostComponent implements OnInit {
   onFileSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      const files = Array.from(input.files);
+     // const files = Array.from(input.files);
 
-      files.forEach(file => {
-        //Add to FormArray 
-        this.images.push(this.fb.control(file));
+     const file = input.files[0]; // Only take the first file
 
-        //Generate preview 
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imagePreviews.push({
-            file : file,
-            preview : reader.result as string
-          })
-        }
-        reader.readAsDataURL(file);
-      })
+     // Clear existing images if any
+     this.images.clear();
+     this.imagePreviews = [];
+
+     
+    // Add to FormArray 
+    this.images.push(this.fb.control(file));
+
+    // Generate preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreviews.push({
+        file: file,
+        preview: reader.result as string
+      });
+    };
+    reader.readAsDataURL(file);
+ 
+
+      // files.forEach(file => {
+      //   //Add to FormArray 
+      //   this.images.push(this.fb.control(file));
+
+      //   //Generate preview 
+      //   const reader = new FileReader();
+      //   reader.onload = () => {
+      //     this.imagePreviews.push({
+      //       file : file,
+      //       preview : reader.result as string
+      //     })
+      //   }
+      //   reader.readAsDataURL(file);
+      // })
     }
   }
    
@@ -72,14 +93,16 @@ export class CreatePostComponent implements OnInit {
       const formData = new FormData();
       formData.append('title',this.postData.get('title')?.value);
       formData.append('content',this.postData.get('content')?.value);
-
+    const image = this.images.at(0).value;
+      formData.append('file',image)
 
       //Append all images 
-      this.images.controls.forEach((control, index) => {
-        formData.append(`file[${index}]`,control.value);
-      });
+      // this.images.controls.forEach((control, index) => {
+      //   formData.append(`file[${index}]`,control.value);
+      // });
 
       this.postService.createPost(formData);
+      
 
       //API call 
       // this.http.post('',formData).subscribe(

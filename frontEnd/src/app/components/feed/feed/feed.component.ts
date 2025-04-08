@@ -33,12 +33,13 @@ export class FeedComponent implements OnInit {
 
   loadMore(): void{
     if(!this.hasMore) return;
-
+    this.loading = true
     this.postServie.getPage(this.currentPage,this.pageSize).subscribe({
       next:(response) => {
        this.posts = [...this.posts, ...response.posts];
        this.hasMore = response.hasMore;
        this.currentPage++;
+       this.loading = false
       },
       error: (error) => {
         console.error('Error Loading More Posts', error);

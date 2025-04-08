@@ -13,6 +13,7 @@ import { AuthGuard } from './Guards/auth.guard';
 import { ViewComponent } from './pages/view/view.component';
 import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { CreateReviewComponent } from './components/create-review/create-review.component';
 
 export const routes: Routes = [
     {
@@ -76,6 +77,11 @@ export const routes: Routes = [
               path:'create-post',
               component:CreatePostComponent,
               canActivate:[AuthGuard]
+          },
+          {
+            path:'create-review',
+            component:CreateReviewComponent,
+            canActivate:[AuthGuard]
           }
       ]
     },

@@ -30,12 +30,13 @@ export class ReviewComponent implements OnInit {
 
     loadMore(): void{
       if(!this.hasMore) return;
-
+      this.loading = true;
       this.reviewSerice.getPage(this.currentPage,this.pageSize).subscribe({
         next:(response) => {
           this.reviews = [...this.reviews , ...response.reviews];
           this.hasMore = response.hasMore;
           this.currentPage++;
+          this.loading = false;
         },
         error:(error) => {
           console.log('error loading more reviews',error);
