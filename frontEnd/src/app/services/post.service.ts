@@ -71,5 +71,9 @@ export class PostService {
     }
   })
   }
+
+  addLike(post:string){
+    return this.http.post<IResponse>(`${environment.BASE_URL}${apiEndPoints.ADD_LIKE}`,{postId:post});
+  }
 }
 

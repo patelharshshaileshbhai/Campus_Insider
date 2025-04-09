@@ -5,6 +5,7 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faFilePen } from '@fortawesome/free-solid-svg-icons';
 import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view',
@@ -17,4 +18,5 @@ export class ViewComponent {
   faFilePen = faFilePen;
   faSquarePlus = faSquarePlus;
   faUserCircle = faUserCircle;
+  faNewspaper = faNewspaper
 }

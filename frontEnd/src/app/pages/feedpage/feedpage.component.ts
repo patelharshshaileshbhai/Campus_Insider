@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FeedComponent } from "../../components/feed/feed/feed.component";
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../models/auth/auth.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-feedpage',
-  imports: [FeedComponent,],
+  imports: [FeedComponent,RouterLink],
   templateUrl: './feedpage.component.html',
   styleUrl: './feedpage.component.scss'
 })

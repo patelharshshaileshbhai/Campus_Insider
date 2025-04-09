@@ -1,5 +1,5 @@
 <div>
-  <h1 class="text-2xl font-semibold flex my-3 px-3">Explore Trending Posts</h1>
+  <h1 class="md:hidden text-2xl font-semibold flex my-3 px-3">Explore Trending Posts</h1>
 
   @if(loading){
     <div class="flex justify-center items-center h-[100vh]">
@@ -47,12 +47,11 @@
             <p class="text-xl font-semibold">{{ item.title | titlecase }}</p>
             <div class="w-full border border-slate-200"></div>
             <div class="flex justify-around">
-              <button class="flex gap-3 items-baseline">
-                <i class="fa-regular fa-heart"></i>
+              <button class="flex gap-3 items-baseline" (click)="handleLike(item.id)">
+                <i [class]="isLiked ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'"></i>
 
                 <span class="text-md font-semibold">Like</span>
-                <span class="text-md font-semibold">{{
-                  item.numbersOfLikes
+                <span class="text-md font-semibold">{{ item.numbersOfLikes
                 }}</span>
               </button>
               <button class="flex gap-3 items-baseline">

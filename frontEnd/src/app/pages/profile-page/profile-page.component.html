@@ -14,7 +14,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <div class="relative   flex flex-col gap-4">
-    <div class="bg-slate-400 w-full h-12">
+    <div class="bg-slate-400 w-full h-12 md:hidden">
       <button (click)="openDialog()">logOut</button>
     </div>
       <div class=" absolute top-7 left-4 hidden sm:block rounded-lg border w-[18rem] h-[20rem] shadow-md  p-10 ">
@@ -34,11 +34,11 @@
               <i class="fa-solid fa-pen-to-square" style="font-size:24px;"></i>
             </div>
             <div  class="flex gap-10 items-center">
-              <button class="text-xl font-semibold text-gray-800 w-[50%] text-left">Posts</button>
+              <button class="text-xl font-semibold text-gray-800 w-[50%] text-left" >Posts</button>
               <i class="fa-regular fa-square-plus" style="font-size:24px;"></i>
             </div>
             <div class="flex gap-10 items-center">
-              <button (click)="handleLogout()" class="text-xl font-semibold text-gray-800 w-[50%] text-left">Log Out</button>
+              <button (click)="openDialog()" class="text-xl font-semibold text-gray-800 w-[50%] text-left">Log Out</button>
               <i class="fa-solid fa-arrow-right-from-bracket"style="font-size:24px;" ></i>
             </div>
           </div>

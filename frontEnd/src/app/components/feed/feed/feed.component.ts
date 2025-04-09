@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { ReviewService } from '../../../services/review.service';
 import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 import { Post } from '../../../models/post.mode';
 import { PostService } from '../../../services/post.service';
+import { IResponse } from '../../../models/auth/auth.model';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class FeedComponent implements OnInit {
   throttle = 300;
   scrollDownDistance = 1;
   scrollUpDistance = 2;
-
+  isLiked : boolean = false;
+  noOfLIkes  = signal<number>(0);
 
  
   constructor(private postServie: PostService) {}
@@ -52,11 +54,44 @@ export class FeedComponent implements OnInit {
       if(this.loading || !this.hasMore) return;
       this.loading = true;
 
+
       this.loadMore();
 
       this.loading = false;
 }
 
+handleLike(id:string){
+
+      // Find the post in our array
+      const postIndex = this.posts.findIndex(post => post.id === id);
+      if (postIndex === -1) return;
+
+  this.postServie.addLike(id).subscribe({
+    next:(response)=>{
+      console.log('like response',response);
+      if(response.success){
+        
+  // Update the post's like count in our local state
+  this.posts = this.posts.map(post => {
+    if (post.id === id) {
+      return {
+        ...post,
+        numbersOfLikes: post.numbersOfLikes + 1,
+        isLiked: true
+      };
+    }
+    return post;
+  });
+
+      }
+      
+    },
+    error:(error) => {
+      console.log("error occure liking post",error);
+    }
+  })
+
+}
 
 }
 
