@@ -21,6 +21,7 @@ model User {
   likes      Like[]
   posts      Post[]
   reviews    Review[]
+  reels      Reel[]
 
   @@map("users")
 }
@@ -71,9 +72,12 @@ model Comment {
   content   String
   createdAt DateTime @default(now())
   userId    String
-  postId    String
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String?
+  post      Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reelId    String?
+  reel      Reel?    @relation(fields: [reelId], references: [id], onDelete: Cascade)
+
 
   @@map("comments")
 }
@@ -81,11 +85,28 @@ model Comment {
 model Like {
   id     String @id @default(uuid())
   userId String
-  postId String
-  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String?
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  reelId String?
+  reel Reel? @relation(fields: [reelId], references: [id], onDelete: Cascade)
 
   @@map("likes")
+}
+
+model Reel {
+  id            String    @id @default(uuid())
+  caption  String?
+  videoUrl      String
+  publicId      String
+  createdAt     DateTime  @default(now())
+  userId        String
+  isDeleted     Boolean   @default(false)
+  numbersOfLikes Int      @default(0)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments      Comment[] // If you want comments on reels
+  likes         Like[]    // If you want likes on reels
 }
 
 model Admin {

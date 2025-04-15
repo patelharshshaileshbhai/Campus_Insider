@@ -35,6 +35,7 @@ import prisma, { connectDB } from './config/prisma'; // Adjust path as needed
 import authRoutes from './routes/auth.route';
 import reviewRoutes from './routes/review.route';
 import dataRoutes from './routes/data.route';
+import reelRoute from './routes/reel.route'
 import cors from 'cors';
 dotenv.config();
 
@@ -47,6 +48,7 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/data', dataRoutes);
+app.use('/api/reel', reelRoute); // Add this line to include the reel route
 
 app.get('/', (req, res) => {
     res.send('Hello World');
