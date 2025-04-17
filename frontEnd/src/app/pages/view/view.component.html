@@ -1,60 +1,58 @@
 <div class="relative max-h-[100vh] overflow-y-hidden">
+  <router-outlet />
+  <div class="z-50 h-[100vh] w-[100vw]">
+    <!-- top bar  -->
+    <div
+      class="sm:hidden z-50 absolute top-0 w-[100vw] h-[3rem] bg-slate-50 border"
+    >
+      <h1 class="text-2xl font-semibold py-2 px-4">EduNexus</h1>
+    </div>
+    <!-- bottomnavbar  -->
+    <div
+      class="sm:hidden z-50 absolute w-full h-[4rem] bottom-0 bg-slate-50 border border-t-2 border-black"
+    >
+      <div class="mt-3 flex justify-around gap-3 items-center">
+        <div [routerLink]="['/feed-page']">
+          <fa-icon
+            class="text-3xl"
+            [icon]="router.url === '/feed-page' ? fasCompass : farCompass"
+          ></fa-icon>
+        </div>
 
+        <div [routerLink]="['/review']" routerLinkActive="router-link-active">
+          <fa-icon
+            class="text-3xl"
+            [icon]="router.url === '/review' ? fasNewspaper : farNewspaper"
+          ></fa-icon>
+        </div>
 
+        <div
+          [routerLink]="['/create-review']"
+          routerLinkActive="router-link-active"
+        >
+          <fa-icon
+            class="text-3xl"
+            [icon]="router.url === '/create-review' ? fasPenToSquare : farPenToSquare"
+          ></fa-icon>
+        </div>
 
-   <router-outlet/>
-   <div class="z-50 h-[100vh] w-[100vw]">
-  
-      <!-- bottomnavbar  -->
-      <div class="sm:hidden z-50 absolute w-full h-[4rem] bottom-0 bg-slate-50 border border-t-2 border-black">
-       <div class="mt-3 flex justify-around gap-3 items-center">
-          <div [routerLink]="['/feed-page']" routerLinkActive="router-link-active" >
-   
-            
-             <fa-icon  class="text-3xl" [icon]="faHouse"></fa-icon>
-           
-                <!-- <i class="fa-solid fa-house"></i> -->
-            
-          </div>
-   
-          <div  [routerLink]="['/review']" routerLinkActive="router-link-active" >
-   
-           
-            <fa-icon class="text-3xl" [icon]="faNewspaper"></fa-icon>
-          
-               <!-- <i class="fa-solid fa-house"></i> -->
-           
-         </div>
+        <div
+          [routerLink]="['/create-post']"
+          routerLinkActive="router-link-active"
+        >
+          <fa-icon
+            class="text-3xl"
+            [icon]="router.url === '/create-post' ? fasSquarePlus : farSquarePlus"
+          ></fa-icon>
+        </div>
 
-         <div  [routerLink]="['/create-review']" routerLinkActive="router-link-active" >
-   
-           
-            <fa-icon class="text-3xl" [icon]="faFilePen"></fa-icon>
-          
-               <!-- <i class="fa-solid fa-house"></i> -->
-           
-         </div>
-
-         <div  [routerLink]="['/create-post']" routerLinkActive="router-link-active" >
-   
-            
-            <fa-icon class="text-3xl" [icon]="faSquarePlus"></fa-icon>
-          
-               <!-- <i class="fa-solid fa-house"></i> -->
-           
-         </div>
-
-         <div  [routerLink]="['/profile']" routerLinkActive="router-link-active" >
-   
-            
-            <fa-icon class="text-3xl" [icon]="faUserCircle"></fa-icon>
-          
-               <!-- <i class="fa-solid fa-house"></i> -->
-           
-         </div>
-       </div>
-     </div>
-   </div>
+        <div [routerLink]="['/profile']" routerLinkActive="router-link-active">
+          <fa-icon
+            class="text-3xl"
+            [icon]="router.url === '/profile' ? fasUserCircle : farUserCircle"
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-

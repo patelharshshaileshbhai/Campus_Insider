@@ -40,7 +40,7 @@ export class AuthService implements OnInit {
       this.setToken(token);
 
     }),
-   
+    switchMap(() => this.fetchUserInfo())
   );
   }
 
@@ -111,8 +111,7 @@ export class AuthService implements OnInit {
   }
 
 googleAuth(){
-  window.location.href = 'http://localhost:8800/api/auth/google';
+  window.location.href = environment.GOOGLE_URL;
 }
-
 
 }

@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
-import { faFilePen } from '@fortawesome/free-solid-svg-icons';
-import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { faCompass as fasCompass } from '@fortawesome/free-solid-svg-icons';
+import {  faCompass as farCompass } from '@fortawesome/free-regular-svg-icons';
 
+import { faNewspaper as fasNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { faNewspaper as farNewspaper } from '@fortawesome/free-regular-svg-icons';
+
+import { faPenToSquare as fasPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare as farPenToSquare } from '@fortawesome/free-regular-svg-icons'
+import { faSquarePlus as fasSquarePlus } from '@fortawesome/free-solid-svg-icons';
+import { faSquarePlus as farSquarePlus } from '@fortawesome/free-regular-svg-icons';
+
+import { faUserCircle as fasUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle as farUserCircle } from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'app-view',
   imports: [RouterOutlet,RouterLink,RouterLink,FontAwesomeModule],
@@ -14,9 +21,15 @@ import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './view.component.scss'
 })
 export class ViewComponent {
-  faHouse = faHouse;
-  faFilePen = faFilePen;
-  faSquarePlus = faSquarePlus;
-  faUserCircle = faUserCircle;
-  faNewspaper = faNewspaper
+  constructor (public router : Router) {}
+  fasCompass = fasCompass;
+  farCompass = farCompass;
+  fasNewspaper = fasNewspaper;
+  farNewspaper = farNewspaper;
+  fasPenToSquare = fasPenToSquare;
+  farPenToSquare = farPenToSquare;
+  fasSquarePlus = fasSquarePlus;
+  farSquarePlus = farSquarePlus;
+  fasUserCircle = fasUserCircle;
+  farUserCircle = farUserCircle;
 }

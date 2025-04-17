@@ -13,7 +13,7 @@
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <div class="relative   flex flex-col gap-4">
+  <div class="relative   flex flex-col md:gap-4">
     <div class="bg-slate-400 w-full h-12 md:hidden">
       <button (click)="openDialog()">logOut</button>
     </div>
@@ -46,12 +46,12 @@
       <!-- profile card -->
       <div class="relative max-w-[100vw] mx-auto  rounded-lg border shadow-md">
           <div>
-              <img class="rounded-t-lg object-cover h-[12.5rem] w-[50rem]" src="../../../assets/bg_cover.jpg" alt="bg image">
+              <img class="md:rounded-t-lg object-cover w-[100vw] h-[8rem]  md:h-[12.5rem] md:w-[50rem] border border-red-500" src="../../../assets/bg_cover.jpg" alt="bg image">
           </div>
-          <div class="absolute rounded-full top-24 left-8 h-40 bg-white w-40">
-              <img   class="absolute rounded-full left-2 top-2 object-cover h-36 w-36" src={{userData?.profileUrl}}  alt="profile image">
+          <div class="absolute rounded-full top-16 left-4 md:top-24 md:left-8 h-36 w-36 md:h-40 md:w-40 bg-white ">
+              <img   class="absolute rounded-full left-2 top-2 object-cover h-32 w-32 md:h-36 md:w-36" src={{userData?.profileUrl}}  alt="profile image">
           </div>
-          <div class="mt-14 ml-10 space-x-1">
+          <div class="mt-20 pl-6 md:mt-14 md:ml-10 space-x-1">
               <div class="flex ">
                 <h1 class="text-2xl font-bold ">{{userData?.fullname}}</h1>
                 <i class="fa-solid fa-certificate " style="color: #0091ff;"></i>
@@ -60,7 +60,7 @@
               <h3 class="text-lg text-slate-500">Kalol, Gujarat, India </h3>
           </div>
        
-          <div class="flex gap-7 mt-5 ml-10 mb-8">
+          <div class="flex w-[100vw] justify-around px-4 py-6 md:gap-7 md:mt-5 md:ml-10 md:mb-8">
               <p class="text-xl font-semibold">Reviews 100</p>
               <p class="text-xl font-semibold">Posts 100</p>
           </div>
