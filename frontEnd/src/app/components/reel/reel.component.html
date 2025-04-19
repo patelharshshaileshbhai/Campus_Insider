@@ -1,0 +1,87 @@
+<div
+  class="w-full h-screen flex items-center justify-center bg-black overflow-hidden"
+>
+  <div
+    id="reel-scroll-container"
+    class="w-full h-full lg:w-[400px] relative overflow-y-hidden snap-y snap-mandatory"
+    (touchstart)="onTouchStart($event)"
+  (touchend)="onTouchEnd($event)"
+  (scroll)="onScroll($event)"
+  >
+    @for (reel of reels; track $index) {
+    <div
+      class="h-screen snap-start relative flex flex-col items-center justify-center"
+    >
+      <!-- Video -->
+      <video
+       id="video-{{$index}}"
+        [src]="reel.videoUrl"
+        loop
+        muted
+        playsInline
+        class="w-full h-full object-cover absolute top-0 left-0 z-0"
+      ></video>
+
+      <!-- Overlay Info -->
+      <div
+        class="absolute bottom-0 z-10 w-full p-4 text-white bg-gradient-to-t from-black via-black/50 to-transparent"
+      >
+      <div class="absolute right-4 bottom-24 flex flex-col items-center z-20">
+        <button
+          (click)="toggleLike()"
+          class="p-2 bg-white/20 rounded-full hover:scale-110 transition-transform"
+        >
+        @if (!reelLiked) {
+            <svg
+      
+            class="w-7 h-7 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 8.5c0-2.5-2-4.5-4.5-4.5S12 6 12 8.5c0 2.5-2 4.5-4.5 4.5S3 11 3 8.5 5 4 7.5 4c1.5 0 2.5 1 4.5 2.5C14 5 15 4 16.5 4c2.5 0 4.5 2 4.5 4.5z"/>
+          </svg>
+        }@else {
+            <svg
+         
+            class="w-7 h-7 text-red-500 animate-ping"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 
+                 6 4 4 6.5 4c1.74 0 3.41 1.01 
+                 4.13 2.44h1.74C14.09 5.01 15.76 4 17.5 4 
+                 20 4 22 6 22 8.5c0 3.78-3.4 6.86-8.55 
+                 11.54L12 21.35z"
+            />
+          </svg>
+        }
+          
+         
+        </button>
+      </div>
+      
+        <div class="flex items-center gap-3 mb-2">
+          <img
+            [src]="reel.user.profileUrl"
+            alt="profile"
+            class="w-10 h-10 rounded-full border-2 border-white"
+          />
+          <div>
+            <p class="font-semibold">{{ reel.user.fullname }}</p>
+            <p class="text-sm text-gray-300">{{ reel.user.username }}</p>
+          </div>
+        </div>
+
+        <p class="text-sm">{{ reel.caption }}</p>
+        <p class="text-xs text-gray-400 mt-1">
+          {{ reel.createdAt | date : "medium" }}
+        </p>
+      </div>
+    </div>
+    }
+  </div>
+</div>

@@ -14,6 +14,7 @@ import { ViewComponent } from './pages/view/view.component';
 import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { CreateReviewComponent } from './components/create-review/create-review.component';
+import { ReelComponent } from './components/reel/reel.component';
 
 export const routes: Routes = [
     {
@@ -86,6 +87,10 @@ export const routes: Routes = [
       ]
     },
 
+    {
+        path:'reel',
+        component:ReelComponent
+    }
    
     
 ];

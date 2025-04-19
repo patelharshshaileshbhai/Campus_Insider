@@ -9,6 +9,8 @@ export const apiEndPoints = {
     GET_ME:'/auth/me',
     GOOGLE_AUTH_URL:'/auth/google',
     GET_COLLEGE:'/data/get',
+    GET_REELS:'/reel/getreels',
+    POST_REEL:'/reel/createreel'
 
     
 }
