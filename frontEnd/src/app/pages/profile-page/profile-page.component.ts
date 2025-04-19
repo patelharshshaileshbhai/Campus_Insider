@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/review.model';
 import { IUser } from '../../models/auth/auth.model';
 import { DialogComponent } from "../../components/common/dialog/dialog.component";
 

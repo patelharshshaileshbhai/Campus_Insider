@@ -1,11 +1,28 @@
 <div class="relative max-h-[100vh] overflow-y-hidden">
   <router-outlet />
   <div class="z-50 h-[100vh] w-[100vw]">
+
+    <div class="z-10">
+      @if(showDialog){
+        <app-dialog
+        [title]="'Are You Sure Want to Log Out ? '"
+        [btn1Label]="'Log Out'"
+        [btn2Label]="'Cancel'"
+        (handleBtn1Click)="handleLogout()"
+        (handleBtn2Click)="closeDialog()"
+      />
+       }
+    </div>
+
     <!-- top bar  -->
     <div
-      class="sm:hidden z-50 absolute top-0 w-[100vw] h-[3rem] bg-slate-50 border"
+      class="sm:hidden z-50 absolute top-0 w-[100vw] h-[3rem] bg-slate-50 border flex items-center justify-between"
     >
       <h1 class="text-2xl font-semibold py-2 px-4">EduNexus</h1>
+
+      <div (click)="openDialog()" class="px-4 text-2xl" [class]="router.url === '/profile' ? 'block' : 'hidden'">
+        <fa-icon [icon]="fasGear" ></fa-icon>
+      </div>
     </div>
     <!-- bottomnavbar  -->
     <div

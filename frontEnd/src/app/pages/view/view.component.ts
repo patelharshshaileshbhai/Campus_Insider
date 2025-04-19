@@ -14,14 +14,26 @@ import { faSquarePlus as farSquarePlus } from '@fortawesome/free-regular-svg-ico
 
 import { faUserCircle as fasUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faUserCircle as farUserCircle } from '@fortawesome/free-regular-svg-icons';
+
+
+import { faGear as fasGear } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../../services/auth.service';
+import { DialogComponent } from "../../components/common/dialog/dialog.component";
+
+
+
 @Component({
   selector: 'app-view',
-  imports: [RouterOutlet,RouterLink,RouterLink,FontAwesomeModule],
+  imports: [RouterOutlet, RouterLink, RouterLink, FontAwesomeModule, DialogComponent],
   templateUrl: './view.component.html',
   styleUrl: './view.component.scss'
 })
 export class ViewComponent {
-  constructor (public router : Router) {}
+
+  showDialog = false;
+
+
+  constructor (public router : Router, private authService : AuthService) {}
   fasCompass = fasCompass;
   farCompass = farCompass;
   fasNewspaper = fasNewspaper;
@@ -32,4 +44,18 @@ export class ViewComponent {
   farSquarePlus = farSquarePlus;
   fasUserCircle = fasUserCircle;
   farUserCircle = farUserCircle;
+  fasGear = fasGear;
+
+
+  handleLogout(){
+    this.authService.logout();
+    alert('log out succefully !')
+  }
+  closeDialog(){
+  this.showDialog = false;
+  }
+  openDialog(){
+    this.showDialog = true
+  }
+
 }
