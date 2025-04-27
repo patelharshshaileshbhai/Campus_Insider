@@ -36,6 +36,7 @@ import authRoutes from './routes/auth.route';
 import reviewRoutes from './routes/review.route';
 import dataRoutes from './routes/data.route';
 import reelRoute from './routes/reel.route'
+import profileRoutes from './routes/profile.route'
 import cors from 'cors';
 dotenv.config();
 
@@ -49,7 +50,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/data', dataRoutes);
 app.use('/api/reel', reelRoute); // Add this line to include the reel route
-
+app.use('/api/profile',profileRoutes)
 app.get('/', (req, res) => {
     res.send('Hello World');
 });

@@ -265,6 +265,9 @@ export const deleteReview = asyncHandler(
 
 export const getAllPosts = asyncHandler(async (req: Request, res: Response) => {
     const posts = await prisma.post.findMany({
+      where:{
+        isDeleted:false
+      },
       orderBy: {
         createdAt: "desc", // ✅ Sort posts from newest to oldest
       },
